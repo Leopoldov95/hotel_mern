@@ -1,0 +1,10 @@
+/* Will have utlity classes here */
+.btn {
+  border: none;
+  outline: none;
+  padding: 1rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

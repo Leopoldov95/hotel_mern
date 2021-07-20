@@ -1,0 +1,59 @@
+.Navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  height: 7rem;
+  width: 100%;
+  color: white;
+  z-index: 10;
+  transition: all ease 300ms;
+  i:hover {
+    cursor: pointer;
+  }
+  &:hover {
+    color: black;
+    background-color: white;
+    transition: all ease 300ms;
+
+    .btn {
+      background-color: black;
+      color: white;
+    }
+    .navTop {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.288);
+    }
+    .navBottom {
+      color: rgb(82, 82, 82);
+      a:hover {
+        color: black;
+      }
+    }
+  }
+  .btn {
+    background-color: white;
+    color: black;
+  }
+  .navTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 1.5rem 0 1.5rem;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.315);
+    .contact {
+      i {
+        padding: 0 10px;
+      }
+    }
+  }
+  .navBottom {
+    text-align: center;
+    font-size: 1.2rem;
+    padding-top: 6px;
+    span {
+      padding: 0 1rem;
+      font-weight: bold;
+    }
+  }
+}
