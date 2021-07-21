@@ -1,0 +1,60 @@
+.Dining {
+  img {
+    width: 100%;
+  }
+  header {
+    height: 75vh;
+    position: relative;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    line-height: 2;
+    font-size: 1.8rem;
+    h2,
+    p {
+      z-index: 10;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
+  .desc {
+    margin-top: 4rem;
+  }
+  .restaurant {
+    position: relative;
+    max-width: 1200px;
+    margin: 4rem auto 0 auto;
+    display: flex;
+    .restaurantLeft {
+      flex-basis: 60%;
+      h2 {
+        font-size: 3rem;
+        font-weight: lighter;
+      }
+      .img-container {
+        padding: 3rem;
+      }
+    }
+    .restaurantRight {
+      flex-basis: 30%;
+
+      article {
+        padding: 1rem;
+        p {
+          margin-top: 1rem;
+          line-height: 1.6;
+        }
+      }
+    }
+  }
+}

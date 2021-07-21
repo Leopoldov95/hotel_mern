@@ -1,13 +1,14 @@
 .Navbar {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   background-color: transparent;
   height: 7rem;
   width: 100%;
   color: white;
-  z-index: 10;
+  z-index: 15;
   transition: all ease 300ms;
+
   i:hover {
     cursor: pointer;
   }
@@ -54,6 +55,24 @@
     span {
       padding: 0 1rem;
       font-weight: bold;
+    }
+  }
+}
+.alt-color {
+  color: black;
+  background-color: white;
+  transition: all ease 300ms;
+  .btn {
+    background-color: black;
+    color: white;
+  }
+  .navTop {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.288);
+  }
+  .navBottom {
+    color: rgb(82, 82, 82);
+    a:hover {
+      color: black;
     }
   }
 }

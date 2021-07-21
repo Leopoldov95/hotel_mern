@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.scss";
 
 const Navbar = () => {
+  const [header, setHeader] = useState("");
+  const listenScrollEvent = (event) => {
+    if (window.scrollY < 73) {
+      return setHeader("");
+    } else if (window.scrollY > 70) {
+      return setHeader("alt-color");
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", listenScrollEvent);
+
+    return () => window.removeEventListener("scroll", listenScrollEvent);
+  }, []);
   return (
-    <div className="Navbar">
+    <div className={`Navbar ${header}`}>
       <div className="navTop">
         <div className="contact">
           <i className="fas fa-phone-alt"></i>
@@ -14,7 +27,7 @@ const Navbar = () => {
         </div>
         <div>
           <Link to="/">
-            <h1>SUAY RESORTS</h1>
+            <h1 className="alt-font">SUAY RESORTS</h1>
           </Link>
         </div>
         <button className="btn">Book Now</button>
@@ -28,6 +41,9 @@ const Navbar = () => {
         </Link>
         <Link to="/auth">
           Account <span>&#183;</span>{" "}
+        </Link>
+        <Link to="/tours">
+          Tours <span>&#183;</span>{" "}
         </Link>
         <Link to="/about">About</Link>
       </div>

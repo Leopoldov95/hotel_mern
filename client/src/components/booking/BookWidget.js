@@ -49,11 +49,17 @@ const BookWidget = () => {
         <div className="adults">
           <label>Adults</label>
           <div className="guest-select">
-            <button className="btn" onClick={(e) => handleAdultSel(e, "+")}>
+            <button
+              className="btn contrast"
+              onClick={(e) => handleAdultSel(e, "+")}
+            >
               <i className="fas fa-plus"></i>
             </button>
             <span>{adults}</span>
-            <button className="btn" onClick={(e) => handleAdultSel(e, "-")}>
+            <button
+              className="btn contrast"
+              onClick={(e) => handleAdultSel(e, "-")}
+            >
               <i className="fas fa-minus"></i>
             </button>
           </div>
@@ -61,11 +67,11 @@ const BookWidget = () => {
         <div className="children">
           <label>Children</label>
           <div className="guest-select">
-            <button className="btn">
+            <button className="btn contrast">
               <i className="fas fa-plus"></i>
             </button>
             <span>{child}</span>
-            <button className="btn">
+            <button className="btn contrast">
               <i className="fas fa-minus"></i>
             </button>
           </div>

@@ -8,3 +8,51 @@
     cursor: pointer;
   }
 }
+
+.contrast {
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+}
+
+.alt-font {
+  font-family: "Playfair Display", serif;
+}
+
+.desc {
+  margin: 7rem auto 0 auto;
+  text-align: center;
+  width: 800px;
+  h1 {
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+  }
+}
+
+.desc_photo {
+  position: relative;
+  max-width: 1100px;
+  margin: 6rem auto 4rem auto;
+  display: flex;
+  h1 {
+    font-size: 4rem;
+    font-weight: lighter;
+    position: absolute;
+    top: 0;
+    left: -50px;
+  }
+  .descLeft {
+    width: 70%;
+    background-color: #f7f7f7;
+    padding: 9rem 16rem 3rem 13rem;
+    p {
+      line-height: 1.6;
+    }
+  }
+  .descRight {
+    width: 43%;
+    top: -25px;
+    right: 0;
+    position: absolute;
+  }
+}

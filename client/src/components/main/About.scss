@@ -1,0 +1,79 @@
+.About {
+  img {
+    width: 100%;
+    min-height: 250px;
+  }
+  header {
+    height: 75vh;
+    position: relative;
+
+    .header-content {
+      color: white;
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      line-height: 2;
+      font-size: 1.8rem;
+      h2,
+      p {
+        z-index: 10;
+      }
+    }
+  }
+
+  .desc {
+    h1 {
+      margin-bottom: 0;
+    }
+    span {
+      border-bottom: 1px solid black;
+      width: 30%;
+      display: inline-block;
+      margin: 1rem auto;
+    }
+  }
+  .testimonials {
+    max-width: 1200px;
+    margin: 8rem auto 0 auto;
+    &-card {
+      display: flex;
+      position: relative;
+      margin: 4rem 0;
+      .img-container {
+        position: absolute;
+        top: -30px;
+        left: -30px;
+        width: 25%;
+      }
+      .quote-container {
+        background-color: #f7f7f7;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 3rem 0 19rem;
+        height: 17rem;
+
+        p {
+          line-height: 1.5;
+        }
+
+        span {
+          font-weight: bold;
+          margin: 1rem 0;
+        }
+      }
+    }
+    .reversed {
+      .img-container {
+        right: -30px;
+        left: auto;
+      }
+      .quote-container {
+        padding: 0 19rem 0 3rem;
+      }
+    }
+  }
+}
