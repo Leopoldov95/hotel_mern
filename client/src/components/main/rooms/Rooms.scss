@@ -1,0 +1,71 @@
+.Rooms {
+  img {
+    width: 100%;
+    min-height: 250px;
+  }
+  header {
+    height: 75vh;
+    position: relative;
+
+    .header-content {
+      color: white;
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      line-height: 2;
+      font-size: 1.8rem;
+      h2,
+      p {
+        z-index: 10;
+      }
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .flex-row-lg {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 3rem auto;
+    padding: 0 4rem;
+    .card {
+      margin: 2rem 2rem 0 2rem;
+      display: flex;
+      flex-direction: column-reverse;
+      flex: 1 0 40%;
+      h1 {
+        font-size: 2rem;
+        font-weight: lighter;
+      }
+      p {
+        margin: 1rem 0;
+        line-height: 1.5;
+      }
+      a {
+        width: 80px;
+      }
+      .img-container {
+        overflow: hidden;
+        max-height: 100%;
+        max-width: 100%;
+        img {
+          transform: scale(1);
+          transition: all ease-in-out 300ms;
+        }
+      }
+
+      a:hover ~ .img-container img {
+        transform: scale(1.1);
+      }
+    }
+  }
+}

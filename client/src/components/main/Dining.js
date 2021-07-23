@@ -22,14 +22,14 @@ const Dining = () => {
           lime.
         </p>
       </section>
-      <section className="restaurant">
-        <div className="restaurantLeft">
+      <section className="desc_gallery">
+        <div className="descLeft">
           <h2 className="alt-font">Kin dī</h2>
           <div className="img-container">
             <img src="/img/dining/dining_article.jpg" alt="dining_pic" />
           </div>
         </div>
-        <div className="restaurantRight">
+        <div className="descRight">
           <img src="/img/dining/dining_team.jpg" alt="dining_team" />
           <article>
             <h2 className="alt-font">World Class Culinary Team</h2>

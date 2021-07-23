@@ -39,8 +39,8 @@ const Navbar = () => {
         <Link to="/dining">
           Dining <span>&#183;</span>{" "}
         </Link>
-        <Link to="/auth">
-          Account <span>&#183;</span>{" "}
+        <Link to="/booking">
+          Booking <span>&#183;</span>{" "}
         </Link>
         <Link to="/tours">
           Tours <span>&#183;</span>{" "}
