@@ -1,6 +1,6 @@
 [
   {
-    "url": 1001,
+    "url": "queen",
     "title": "Double Bedroom",
     "titleHeader": "One&Only Cape Town's classic room is the perfect beginning to your South African adventure",
     "description": "Indulge in this elegant two-bedroom suite, the most enviable address in Cape Town, with stunning terraces facing Table Mountain and the V&A Waterfront.",
@@ -30,7 +30,7 @@
     "subImage": "queen_sub.jpeg"
   },
   {
-    "url": 1002,
+    "url": "king",
     "title": "King Bedroom",
     "titleHeader": "One&Only Cape Town's classic room is the perfect beginning to your South African adventure",
     "description": "Indulge in this elegant two-bedroom suite, the most enviable address in Cape Town, with stunning terraces facing Table Mountain and the V&A Waterfront.",
@@ -60,7 +60,7 @@
     "subImage": "queen_sub.jpeg"
   },
   {
-    "url": 1003,
+    "url": "suite",
     "title": "Paradise Suite",
     "titleHeader": "One&Only Cape Town's classic room is the perfect beginning to your South African adventure",
     "description": "Indulge in this elegant two-bedroom suite, the most enviable address in Cape Town, with stunning terraces facing Table Mountain and the V&A Waterfront.",
@@ -90,7 +90,7 @@
     "subImage": "queen_sub.jpeg"
   },
   {
-    "url": 1004,
+    "url": "villa",
     "title": "Oceanside Villa",
     "titleHeader": "One&Only Cape Town's classic room is the perfect beginning to your South African adventure",
     "description": "Indulge in this elegant two-bedroom suite, the most enviable address in Cape Town, with stunning terraces facing Table Mountain and the V&A Waterfront.",
