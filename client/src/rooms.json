@@ -2,10 +2,10 @@
   {
     "url": "queen",
     "title": "Double Bedroom",
-    "titleHeader": "One&Only Cape Town's classic room is the perfect beginning to your South African adventure",
-    "description": "Indulge in this elegant two-bedroom suite, the most enviable address in Cape Town, with stunning terraces facing Table Mountain and the V&A Waterfront.",
+    "titleHeader": "Suay Resort's classic room is the perfect beginning to your Thailand adventure",
+    "description": "Indulge in this elegant two-bedroom suite, the most enviable address in Phuket, with stunning terraces facing the pacific ocean and beachside access.",
     "header": "YOUR URBAN OASIS",
-    "subHeader": "Overlooking our resort’s waterways, relax into your own serene space at One&Only Cape Town.",
+    "subHeader": "Overlooking our resort’s waterways, relax into your own serene space at Suay Resort.",
     "view": "Beach Resort",
     "size": "73sqm/785sqft",
     "adults": 2,
@@ -27,20 +27,22 @@
     ],
     "paragraph": "Choose from a king-size or two queen-size beds, and meander through your spacious dressing area into the en suite bathroom. Here, your oversized, oval bath is the centre of attention, framed by dual marble vanities and a classic rain shower. Recline on your furnished private terrace overlooking the Marina as sunlight filters through floor-to-ceiling balcony doors. To stay in complete comfort with family and friends, simply book two of our hotel rooms, seamlessly interconnecting for even more space.",
     "mainImage": "queen.jpg",
-    "subImage": "queen_sub.jpeg"
+    "subImage": "queen_sub.jpeg",
+    "rooms": 4,
+    "price": 150
   },
   {
     "url": "king",
     "title": "King Bedroom",
-    "titleHeader": "One&Only Cape Town's classic room is the perfect beginning to your South African adventure",
+    "titleHeader": "Enjoy a spacious and relaxing environment during you stay at Suy Resort",
     "description": "Indulge in this elegant two-bedroom suite, the most enviable address in Cape Town, with stunning terraces facing Table Mountain and the V&A Waterfront.",
-    "header": "YOUR URBAN OASIS",
+    "header": "THE CHOICE FOR FAMILIES",
     "subHeader": "Overlooking our resort’s waterways, relax into your own serene space at One&Only Cape Town.",
-    "view": "Beach Resort",
-    "size": "73sqm/785sqft",
+    "view": "Beach Resort / Resort Pool",
+    "size": "201sqm/2163sqft",
     "adults": 2,
-    "children": 1,
-    "bedding": "1 King Bed or 2 Queen Beds",
+    "children": 3,
+    "bedding": "2 King Beds",
     "amenities": [
       "breakfast",
       "king bed",
@@ -57,20 +59,22 @@
     ],
     "paragraph": "Choose from a king-size or two queen-size beds, and meander through your spacious dressing area into the en suite bathroom. Here, your oversized, oval bath is the centre of attention, framed by dual marble vanities and a classic rain shower. Recline on your furnished private terrace overlooking the Marina as sunlight filters through floor-to-ceiling balcony doors. To stay in complete comfort with family and friends, simply book two of our hotel rooms, seamlessly interconnecting for even more space.",
     "mainImage": "king.jpg",
-    "subImage": "queen_sub.jpeg"
+    "subImage": "king_sub.jpg",
+    "rooms": 4,
+    "price": 300
   },
   {
     "url": "suite",
     "title": "Paradise Suite",
     "titleHeader": "One&Only Cape Town's classic room is the perfect beginning to your South African adventure",
     "description": "Indulge in this elegant two-bedroom suite, the most enviable address in Cape Town, with stunning terraces facing Table Mountain and the V&A Waterfront.",
-    "header": "YOUR URBAN OASIS",
+    "header": "YOUR BEACH PARADISE",
     "subHeader": "Overlooking our resort’s waterways, relax into your own serene space at One&Only Cape Town.",
     "view": "Beach Resort",
-    "size": "73sqm/785sqft",
-    "adults": 2,
-    "children": 1,
-    "bedding": "1 King Bed or 2 Queen Beds",
+    "size": "316sqm/3401sqft",
+    "adults": 3,
+    "children": 4,
+    "bedding": "2 King Beds 1 Queen bed",
     "amenities": [
       "breakfast",
       "king bed",
@@ -83,24 +87,27 @@
       "tv",
       "wifi",
       "shuttle",
-      "beach"
+      "beach",
+      "hot tub"
     ],
     "paragraph": "Choose from a king-size or two queen-size beds, and meander through your spacious dressing area into the en suite bathroom. Here, your oversized, oval bath is the centre of attention, framed by dual marble vanities and a classic rain shower. Recline on your furnished private terrace overlooking the Marina as sunlight filters through floor-to-ceiling balcony doors. To stay in complete comfort with family and friends, simply book two of our hotel rooms, seamlessly interconnecting for even more space.",
     "mainImage": "suite.jpg",
-    "subImage": "queen_sub.jpeg"
+    "subImage": "suite_sub.jpg",
+    "rooms": 2,
+    "price": 500
   },
   {
     "url": "villa",
     "title": "Oceanside Villa",
     "titleHeader": "One&Only Cape Town's classic room is the perfect beginning to your South African adventure",
     "description": "Indulge in this elegant two-bedroom suite, the most enviable address in Cape Town, with stunning terraces facing Table Mountain and the V&A Waterfront.",
-    "header": "YOUR URBAN OASIS",
+    "header": "THE ULTIMATE GETAWAY",
     "subHeader": "Overlooking our resort’s waterways, relax into your own serene space at One&Only Cape Town.",
     "view": "Beach Resort",
-    "size": "73sqm/785sqft",
-    "adults": 2,
-    "children": 1,
-    "bedding": "1 King Bed or 2 Queen Beds",
+    "size": "1,275 sqm/13,724 sqft",
+    "adults": 5,
+    "children": 5,
+    "bedding": "3 King Beds & 2 Queen Beds",
     "amenities": [
       "breakfast",
       "king bed",
@@ -113,10 +120,14 @@
       "tv",
       "wifi",
       "shuttle",
-      "beach"
+      "beach",
+      "spa",
+      "hot tub"
     ],
     "paragraph": "Choose from a king-size or two queen-size beds, and meander through your spacious dressing area into the en suite bathroom. Here, your oversized, oval bath is the centre of attention, framed by dual marble vanities and a classic rain shower. Recline on your furnished private terrace overlooking the Marina as sunlight filters through floor-to-ceiling balcony doors. To stay in complete comfort with family and friends, simply book two of our hotel rooms, seamlessly interconnecting for even more space.",
     "mainImage": "villa.jpeg",
-    "subImage": "queen_sub.jpeg"
+    "subImage": "villa_sub.jpg",
+    "rooms": 2,
+    "price": 750
   }
 ]

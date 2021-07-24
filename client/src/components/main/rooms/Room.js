@@ -12,12 +12,6 @@ const Room = (props) => {
   const handleClick = () => {
     show === 4 ? setShow(currRoom.amenities.length) : setShow(4);
   };
-  /* const showAmenities = () => {
-    for (let i = 0; i < show; i++) {
-      return i;
-    }
-  };
-  console.log(showAmenities()); */
   return (
     <div className="Room">
       <header

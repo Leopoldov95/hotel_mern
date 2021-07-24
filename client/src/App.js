@@ -9,6 +9,7 @@ import Dining from "./components/main/Dining";
 import Footer from "./components/main/Footer";
 import About from "./components/main/About";
 import Tour from "./components/main/Tour";
+import Booking from './components/booking/Booking'
 const App = () => {
   return (
     <Router>
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/dining" exact component={Dining} />
         <Route path="/about" exact component={About} />
         <Route path="/tours" exact component={Tour} />
+        <Route path='/booking' exact render={(props) => <Booking {...props}/>} />
       </Switch>
       <Footer />
     </Router>

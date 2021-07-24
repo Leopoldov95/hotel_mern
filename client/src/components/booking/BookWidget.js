@@ -9,6 +9,7 @@ const BookWidget = () => {
   const [showCalender, setShowCalender] = useState(false);
   const [adults, setAdults] = useState(1);
   const [child, setChild] = useState(0);
+  const [value, onChange] = useState(new Date());
   const [state, setState] = useState([
     {
       startDate: new Date(),
@@ -24,7 +25,7 @@ const BookWidget = () => {
   const handleSelect = (range) => {
     // do something with data here
     console.log(range);
-  };
+  }; 
   const handleCalenderDisplay = (e) => {
     e.preventDefault();
     setShowCalender(!showCalender);
@@ -80,6 +81,7 @@ const BookWidget = () => {
       </form>
       <div className="calender">
         {showCalender && (
+          
           <DateRangePicker
             onChange={(item) => setState([item.selection])}
             showSelectionPreview={true}
