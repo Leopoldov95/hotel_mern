@@ -1,4 +1,23 @@
 .Booking {
+    .displayInfo {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      div {
+          label {
+              display: inline-block;
+              margin-bottom: 8px;
+          }
+      }
+     
+      span {
+          padding: 0 1rem ;
+      }
+    }
+    .guest-select{
+        display: flex;
+        align-items: center;
+      }
     .calenderContainer {
         text-align: center;
         margin-top: 2rem;
