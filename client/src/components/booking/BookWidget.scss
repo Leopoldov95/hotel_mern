@@ -24,6 +24,8 @@
     }
     .guest-select {
       margin-top: 1rem;
+      display: flex;
+      align-items: center;
       span {
         padding: 0 1rem;
       }

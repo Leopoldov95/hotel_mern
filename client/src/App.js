@@ -9,7 +9,8 @@ import Dining from "./components/main/Dining";
 import Footer from "./components/main/Footer";
 import About from "./components/main/About";
 import Tour from "./components/main/Tour";
-import Booking from './components/booking/Booking'
+import Booking from "./components/booking/Booking";
+import Available from "./components/booking/Available";
 const App = () => {
   return (
     <Router>
@@ -25,7 +26,8 @@ const App = () => {
         <Route path="/dining" exact component={Dining} />
         <Route path="/about" exact component={About} />
         <Route path="/tours" exact component={Tour} />
-        <Route path='/booking' exact render={(props) => <Booking {...props}/>} />
+        <Route path="/booking" exact component={Booking} />
+        <Route path="/booking/availability" exact component={Available} />
       </Switch>
       <Footer />
     </Router>

@@ -1,43 +1,20 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { updateAdult, updateChildren, updateDate } from "../../actions/booking";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRangePicker } from "react-date-range";
-import { addDays } from "date-fns";
 import "./BookWidget.scss";
 
 const BookWidget = () => {
+  const dispatch = useDispatch();
   const [showCalender, setShowCalender] = useState(false);
-  const [adults, setAdults] = useState(1);
-  const [child, setChild] = useState(0);
-  const [value, onChange] = useState(new Date());
-  const [state, setState] = useState([
-    {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 7),
-      key: "selection",
-    },
-  ]);
-  const selectionRange = {
-    startDate: new Date(),
-    endDate: new Date(),
-    key: "selection",
-  };
-  const handleSelect = (range) => {
-    // do something with data here
-    console.log(range);
-  }; 
+  const booking = useSelector((state) => state.bookings);
   const handleCalenderDisplay = (e) => {
     e.preventDefault();
     setShowCalender(!showCalender);
   };
 
-  const handleAdultSel = (e, action) => {
-    e.preventDefault();
-    console.log(action);
-  };
-  const handleSel = (e) => {
-    e.preventDefault();
-  };
   return (
     <div className="BookWidget">
       <form>
@@ -50,44 +27,56 @@ const BookWidget = () => {
         <div className="adults">
           <label>Adults</label>
           <div className="guest-select">
-            <button
+            <div
               className="btn contrast"
-              onClick={(e) => handleAdultSel(e, "+")}
+              onClick={() => dispatch(updateAdult(1))}
             >
               <i className="fas fa-plus"></i>
-            </button>
-            <span>{adults}</span>
-            <button
+            </div>
+            <span>{booking.adults}</span>
+            <div
               className="btn contrast"
-              onClick={(e) => handleAdultSel(e, "-")}
+              onClick={() => {
+                dispatch(updateAdult(-1));
+              }}
             >
               <i className="fas fa-minus"></i>
-            </button>
+            </div>
           </div>
         </div>
         <div className="children">
           <label>Children</label>
           <div className="guest-select">
-            <button className="btn contrast">
+            <div
+              className="btn contrast"
+              onClick={() => {
+                dispatch(updateChildren(1));
+              }}
+            >
               <i className="fas fa-plus"></i>
-            </button>
-            <span>{child}</span>
-            <button className="btn contrast">
+            </div>
+            <span>{booking.children}</span>
+            <div
+              className="btn contrast"
+              onClick={() => {
+                dispatch(updateChildren(-1));
+              }}
+            >
               <i className="fas fa-minus"></i>
-            </button>
+            </div>
           </div>
         </div>
         <button className="btn">Check Availability</button>
       </form>
       <div className="calender">
         {showCalender && (
-          
           <DateRangePicker
-            onChange={(item) => setState([item.selection])}
+            /*  onChange={(item) => setState([item.selection])} */ // will need to use dispatch here to truly update the state
+            onChange={(item) => dispatch(updateDate([item.selection]))}
             showSelectionPreview={true}
             moveRangeOnFirstSelection={false}
             months={2}
-            ranges={state}
+            ranges={booking.dates}
             direction="horizontal"
           />
         )}

@@ -1,7 +1,6 @@
 .About {
   img {
     width: 100%;
-    min-height: 250px;
   }
   header {
     height: 75vh;
@@ -34,9 +33,18 @@
       margin: 1rem auto;
     }
   }
+  .desc_photo {
+    .descRight {
+      top: -45px;
+    }
+  }
   .testimonials {
     max-width: 1200px;
     margin: 8rem auto 0 auto;
+    h1 {
+      font-size: 3rem;
+      text-align: center;
+    }
     &-card {
       display: flex;
       position: relative;
@@ -70,6 +78,8 @@
       .img-container {
         right: -30px;
         left: auto;
+        top: 50%;
+        transform: translateY(-50%);
       }
       .quote-container {
         padding: 0 19rem 0 3rem;

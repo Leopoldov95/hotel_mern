@@ -11,6 +11,7 @@ import reducers from "./reducers";
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
 
 ReactDOM.render(
+  // Provider connects the store (global states) to the entire App
   <Provider store={store}>
     <App />
   </Provider>,
