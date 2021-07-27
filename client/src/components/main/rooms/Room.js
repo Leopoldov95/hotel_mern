@@ -1,84 +1,93 @@
 import React, { useEffect, useState } from "react";
-import RoomsJSON from "../../../rooms.json";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { getRoom } from "../../../actions/rooms";
 import BookWidget from "../../booking/BookWidget";
 import { displayIcon } from "./Icons";
 import "./Room.scss";
 const Room = (props) => {
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const currId = props.match.params.id;
   const [show, setShow] = useState(4);
 
-  const currId = props.match.params.id;
-  const currRoom = RoomsJSON.find((room) => room.url === currId);
-
+  useEffect(() => {
+    dispatch(getRoom(currId));
+  }, [location]);
+  // for some reason this is rendering twice....
+  const room = useSelector((state) => state.rooms.room);
   const handleClick = () => {
-    show === 4 ? setShow(currRoom.amenities.length) : setShow(4);
+    show === 4 ? setShow(room.amenities.length) : setShow(4);
   };
   return (
     <div className="Room">
       <header
         style={{
-          background: `no-repeat center/cover url("/img/rooms/${currRoom.mainImage}")`,
+          background: `no-repeat center/cover url("/img/rooms/${room.mainImage}")`,
         }}
       >
         <div className="header-content">
-          <h2 className="alt-font">{currRoom.title}</h2>
-          <p>{currRoom.titleHeader}</p>
+          <h2 className="alt-font">{room.title}</h2>
+          <p>{room.titleHeader}</p>
         </div>
 
         <BookWidget />
       </header>
       <section className="desc">
-        <h1 className="alt-font">{currRoom.header}</h1>
-        <p>{currRoom.subHeader}</p>
+        <h1 className="alt-font">{room.header}</h1>
+        <p>{room.subHeader}</p>
       </section>
       <section className="roomInfo">
         <div className="infoLeft">
           <div className="info">
             <div>
               <h3>VIEW</h3>
-              <p>{currRoom.view}</p>
+              <p>{room.view}</p>
             </div>
             <div>
               <h3>SIZE</h3>
-              <p>{currRoom.size}</p>
+              <p>{room.size}</p>
             </div>
             <div>
               <h3>OCCUPANCY</h3>
               <p>
-                {currRoom.adults} Adults & {currRoom.children} Children
+                {room.adults} Adults & {room.children} Children
               </p>
             </div>
             <div>
               <h3>BEDDING</h3>
-              <p>{currRoom.bedding}</p>
+              <p>{room.bedding}</p>
             </div>
           </div>
-          <div className="infoIcons">
-            <h3>AMENITIES</h3>
-            <ul>
-              {currRoom.amenities
-                .filter((item, idx) => idx < show)
-                .map((item) => (
-                  <li key={item}>
-                    <i className={`${displayIcon(item)} itemIcon`}></i>
-                    <p>{item}</p>
-                  </li>
-                ))}
-              <li onClick={handleClick}>
-                <i
-                  className={`${
-                    show <= 4 ? "fas fa-plus" : "fas fa-minus"
-                  } itemIcon itemShow`}
-                >
-                  {show <= 4 && <span>{currRoom.amenities.length - 4}</span>}
-                </i>
-              </li>
-            </ul>
-          </div>
+          {room.amenities && (
+            <div className="infoIcons">
+              <h3>AMENITIES</h3>
+              <ul>
+                {room.amenities
+                  .filter((item, idx) => idx < show)
+                  .map((item) => (
+                    <li key={item}>
+                      <i className={`${displayIcon(item)} itemIcon`}></i>
+                      <p>{item}</p>
+                    </li>
+                  ))}
+                <li onClick={handleClick}>
+                  <i
+                    className={`${
+                      show <= 4 ? "fas fa-plus" : "fas fa-minus"
+                    } itemIcon itemShow`}
+                  >
+                    {show <= 4 && <span>{room.amenities.length - 4}</span>}
+                  </i>
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
 
         <div className="infoRight">
           <h2 className="alt-font">ROOM OVERVIEW</h2>
-          <p>{currRoom.paragraph}</p>
+          <p>{room.paragraph}</p>
         </div>
       </section>
       <section className="desc_main">
@@ -98,7 +107,7 @@ const Room = (props) => {
           <button className="btn contrast">Discover More</button>
         </article>
         <div className="descRight">
-          <img src={`/img/rooms/${currRoom.subImage}`} alt="sub_room" />
+          <img src={`/img/rooms/${room.subImage}`} alt="sub_room" />
         </div>
       </section>
     </div>

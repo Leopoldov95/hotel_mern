@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Rooms.scss";
-import { Link } from "react-router-dom";
+import { getAllRooms } from "../../../actions/rooms";
+import { Link, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import BookWidget from "../../booking/BookWidget";
-import RoomsJSON from "../../../rooms.json";
+/* import RoomsJSON from "../../../rooms.json"; */
 const Rooms = () => {
+  const dispatch = useDispatch();
+  const location = useLocation();
+  useEffect(() => {
+    dispatch(getAllRooms());
+  }, [location]);
+  const rooms = useSelector((state) => state.rooms.rooms);
   return (
     <div className="Rooms">
       <header
@@ -31,7 +39,7 @@ const Rooms = () => {
         </p>
       </section>
       <section className="flex-row-lg">
-        {RoomsJSON.map((room) => (
+        {rooms.map((room) => (
           <article className="card" key={room.title}>
             <Link to={`rooms/${room.url}`}>
               <button className="btn-alt ">EXPLORE</button>

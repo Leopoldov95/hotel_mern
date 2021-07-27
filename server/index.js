@@ -2,13 +2,14 @@ import express from "express";
 import mongoose from "mongoose"; // Data Base
 import cors from "cors"; // for Cross-Origin
 import dotenv from "dotenv";
-import bookingRoutes from "./routes/bookings";
-import roomRoutes from "./routes/rooms";
+import bookingRoutes from "./routes/bookings.js";
+import roomRoutes from "./routes/rooms.js";
 
 const app = express();
 dotenv.config();
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: "30mb" }));
 app.use(cors());
 
 app.use("/rooms", roomRoutes);

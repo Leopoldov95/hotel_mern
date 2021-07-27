@@ -1,9 +1,17 @@
-import { CREATE, ADULT, CHILDREN, CHANGE_DATE } from "../constants/actionTypes";
+import {
+  CREATE,
+  ADULT,
+  CHILDREN,
+  CHANGE_DATE,
+  AVAILABLE,
+} from "../constants/actionTypes";
 import { addDays } from "date-fns";
 
 // this will be used to manage state/API booking
 export const bookingAPIReducer = (booking = [], action) => {
   switch (action.type) {
+    case AVAILABLE:
+      return console.log("show all available bookings");
     case CREATE:
       return [...booking, action.payload];
     default:

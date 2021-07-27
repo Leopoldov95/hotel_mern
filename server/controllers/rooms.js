@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Rooms from "../models/rooms";
+import Rooms from "../models/rooms.js";
 
 export const getRooms = async (req, res) => {
   try {
@@ -13,7 +13,8 @@ export const getRooms = async (req, res) => {
 };
 
 export const getRoom = async (req, res) => {
-  const { url } = req.params;
+  const { id } = req.params;
+  const url = id;
   try {
     const room = await Rooms.findOne({ url });
     res.status(200).json(room);

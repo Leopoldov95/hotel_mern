@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./Available.scss";
+import { getAllAvailable } from "../../actions/booking";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -18,8 +19,9 @@ const Available = () => {
   // when storing and managind date in the database, make sure to first convert it to US format!!
   const dispatch = useDispatch();
   const booking = useSelector((state) => state.bookings);
+
   const classes = useStyles();
-  console.log(booking);
+
   return (
     <div className="Available">
       <div className={classes.root}>

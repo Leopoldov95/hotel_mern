@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { updateAdult, updateChildren, updateDate } from "../../actions/booking";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
@@ -8,6 +9,7 @@ import "./BookWidget.scss";
 
 const BookWidget = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [showCalender, setShowCalender] = useState(false);
   const booking = useSelector((state) => state.bookings);
   const handleCalenderDisplay = (e) => {
@@ -15,9 +17,15 @@ const BookWidget = () => {
     setShowCalender(!showCalender);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("manage the form or whatever");
+    history.push("/booking/availability");
+  };
+
   return (
     <div className="BookWidget">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="date">
           <label>Check-In/Check-Out</label>
           <button className="btn btn-date" onClick={handleCalenderDisplay}>
