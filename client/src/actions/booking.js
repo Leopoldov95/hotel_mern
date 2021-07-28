@@ -34,6 +34,7 @@ export const updateDate = (val) => {
 export const getAllAvailable = (params) => async (dispatch) => {
   try {
     const { data } = await api.fetchAvailableRooms(params);
+
     dispatch({ type: AVAILABLE, payload: data });
   } catch (error) {
     console.log(error);

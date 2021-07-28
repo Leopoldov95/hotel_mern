@@ -11,7 +11,7 @@ import { addDays } from "date-fns";
 export const bookingAPIReducer = (booking = [], action) => {
   switch (action.type) {
     case AVAILABLE:
-      return console.log("show all available bookings");
+      return { booking: action.payload };
     case CREATE:
       return [...booking, action.payload];
     default:

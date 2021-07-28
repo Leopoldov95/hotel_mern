@@ -17,11 +17,16 @@ export const getAllAvailable = async (req, res) => {
   const data = req.body;
   try {
     // fetch all rooms, even if they're booked (match by adults and children)
-    const room = await Rooms.find({
-      $and: [{ adults: { $ne: 5 } }, { children: { $ne: 5 } }],
+    const available = await Rooms.find({
+      $and: [
+        { adults: { $gte: data.adults } },
+        { children: { $gte: data.children } },
+      ],
     });
-    console.log(room);
-    // use the retrieve rooms and check if the dates are valid, will need a helper function/file
+
+    // use the retrieve rooms and check if the dates are valid, will need a helper function/file, will need to manage this later
+
+    res.status(200).json(available);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }

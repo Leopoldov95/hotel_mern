@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { getRoom } from "../../../actions/rooms";
 import BookWidget from "../../booking/BookWidget";
-import { displayIcon } from "./Icons";
+import { displayIcon } from "../../helper/Icons";
 import "./Room.scss";
 const Room = (props) => {
   const dispatch = useDispatch();

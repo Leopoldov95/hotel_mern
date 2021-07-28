@@ -18,7 +18,8 @@ const useStyles = makeStyles((theme) => ({
 const Available = () => {
   // when storing and managind date in the database, make sure to first convert it to US format!!
   const dispatch = useDispatch();
-  const booking = useSelector((state) => state.bookings);
+  const bookingsAPI = useSelector((state) => state.bookingsAPI);
+  console.log(bookingsAPI);
 
   const classes = useStyles();
 

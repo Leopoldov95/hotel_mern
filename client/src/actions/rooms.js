@@ -13,6 +13,7 @@ export const getAllRooms = () => async (dispatch) => {
 export const getRoom = (url) => async (dispatch) => {
   try {
     const { data } = await api.fetchRoom(url);
+    console.log(data);
     dispatch({ type: ROOM, payload: data });
   } catch (error) {
     console.log(error);
