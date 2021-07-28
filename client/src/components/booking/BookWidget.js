@@ -27,10 +27,22 @@ const BookWidget = () => {
     <div className="BookWidget">
       <form onSubmit={handleSubmit}>
         <div className="date">
-          <label>Check-In/Check-Out</label>
-          <button className="btn btn-date" onClick={handleCalenderDisplay}>
-            <span> Select Dates</span> <i className="fas fa-chevron-down"></i>
-          </button>
+        <div onClick={() => setShowCalender(!showCalender)}>
+          <label>Start Date</label>
+          <div>
+            <i className="far fa-calendar-alt"></i>
+            <span>
+              {booking.dates[0].startDate.toLocaleDateString("en-US")}
+            </span>
+          </div>
+        </div>
+        <div onClick={() => setShowCalender(!showCalender)}>
+          <label>End Date</label>
+          <div>
+            <i className="far fa-calendar-alt"></i>
+            <span>{booking.dates[0].endDate.toLocaleDateString("en-US")}</span>
+          </div>
+        </div>
         </div>
         <div className="adults">
           <label>Adults</label>

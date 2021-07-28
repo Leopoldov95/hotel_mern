@@ -12,15 +12,25 @@
   form {
     display: flex;
     justify-content: space-between;
-    margin: 0 6rem;
+    margin: 0 3rem;
     align-items: center;
-    .btn-date {
-      background-color: transparent;
-      width: 240px;
-      padding: 10px 0;
+    .date {
       display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid black;
+      div {
+        &:hover {
+          cursor: pointer;
+        }
+        &:nth-child(1) {
+          margin-right: 2rem;
+        }
+        label {
+          display: inline-block;
+          margin-bottom: 8px;
+        }
+        span {
+          padding: 0 1rem;
+        }
+      }
     }
     .guest-select {
       margin-top: 1rem;
