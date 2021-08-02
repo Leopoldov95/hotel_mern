@@ -10,7 +10,7 @@ import { displayIcon } from "../helper/Icons";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRangePicker } from "react-date-range";
-import "./Booking.scss";
+import "../../styles/Booking.scss"
 const Booking = (props) => {
   const dispatch = useDispatch();
   const booking = useSelector((state) => state.bookings);
@@ -32,13 +32,16 @@ const Booking = (props) => {
 
   return (
     <div className="Booking">
-      <header
+      <header className='header-main'
         style={{
           background:
             ' no-repeat center/cover url("/img/booking/booking_header.jpg")',
         }}
       >
-        <h2 className="alt-font">Make A Reservation</h2>
+        <div className='header-content'>
+             <h2 className="alt-font">Make A Reservation</h2>
+        </div>
+     
       </header>
       <section className="existing">
         <label>Already have a Booking?</label>

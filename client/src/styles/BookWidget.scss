@@ -45,3 +45,29 @@
     padding: 2rem 0 0 5rem;
   }
 }
+
+/* Book Widget tablet/mobile */
+@media only screen and (max-width: 920px) {
+  .BookWidget {
+    width: 97%;
+    form {
+      flex-direction: column;
+      .date {
+        width: 100%;
+    justify-content: space-around;
+   
+        &>div {
+          background-color: #dbd5cd;
+          padding: 1rem 4rem;
+          }
+      }
+    }
+    .calender {
+      padding: 0;
+      text-align: center;
+      .rdrDefinedRangesWrapper {
+        display: none;
+      }
+    }
+  }
+}

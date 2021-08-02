@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { getRoom } from "../../../actions/rooms";
 import BookWidget from "../../booking/BookWidget";
 import { displayIcon } from "../../helper/Icons";
-import "./Room.scss";
+import "../../../styles/Room.scss";
 const Room = (props) => {
   const dispatch = useDispatch();
   const location = useLocation();
@@ -21,7 +21,7 @@ const Room = (props) => {
   };
   return (
     <div className="Room">
-      <header
+      <header className='header-main'
         style={{
           background: `no-repeat center/cover url("/img/rooms/${room.mainImage}")`,
         }}

@@ -1,14 +1,15 @@
 import React from "react";
-import "./App.scss";
+import "./styles/App.scss";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
-import Home from "./components/main/Home";
-import Rooms from "./components/main/rooms/Rooms";
-import Room from "./components/main/rooms/Room";
-import Dining from "./components/main/Dining";
-import Footer from "./components/main/Footer";
-import About from "./components/main/About";
-import Tour from "./components/main/Tour";
+import NavMobile from "./components/navbar/NavMoblile";
+import Home from "./components/pages/Home";
+import Rooms from "./components/pages/rooms/Rooms";
+import Room from "./components/pages/rooms/Room";
+import Dining from "./components/pages/Dining";
+import Footer from "./components/pages/Footer";
+import About from "./components/pages/About";
+import Tour from "./components/pages/Tour";
 import Booking from "./components/booking/Booking";
 import Available from "./components/booking/Available";
 import Auth from "./components/auth/Auth";
@@ -16,6 +17,7 @@ const App = () => {
   return (
     <Router>
       <Navbar />
+      <NavMobile />
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/rooms" exact component={Rooms} />

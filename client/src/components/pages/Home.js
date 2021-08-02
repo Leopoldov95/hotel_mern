@@ -1,10 +1,10 @@
 import React from "react";
 import BookWidget from "../booking/BookWidget";
-import "./Home.scss";
+import "../../styles/Home.scss";
 const Home = () => {
   return (
     <div className="Home">
-      <header
+      <header className='header-main'
         style={{
           background: ' no-repeat center/cover url("/img/home/home.jpg")',
         }}

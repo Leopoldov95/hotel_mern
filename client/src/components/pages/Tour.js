@@ -1,10 +1,10 @@
 import React from "react";
-import "./Tour.scss";
+import "../../styles/Tour.scss";
 import BookWidget from "../booking/BookWidget";
 const Tour = () => {
   return (
     <div className="Tour">
-      <header
+      <header className='header-main'
         style={{
           background:
             ' no-repeat center/cover url("/img/tours/tour_header.jpg")',

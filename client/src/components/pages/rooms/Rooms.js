@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./Rooms.scss";
+import '../../../styles/Rooms.scss'
 import { getAllRooms } from "../../../actions/rooms";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +14,7 @@ const Rooms = () => {
   const rooms = useSelector((state) => state.rooms.rooms);
   return (
     <div className="Rooms">
-      <header
+      <header className='header-main'
         style={{
           background:
             ' no-repeat center/cover url("/img/rooms/room_header.jpg")',

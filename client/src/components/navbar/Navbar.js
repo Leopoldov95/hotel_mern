@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./Navbar.scss";
+import '../../styles/Navbar.scss'
 
 const Navbar = () => {
   const [header, setHeader] = useState("");
@@ -30,7 +30,11 @@ const Navbar = () => {
             <h1 className="alt-font">SUAY RESORTS</h1>
           </Link>
         </div>
-        <button className="btn">Book Now</button>
+        <Link to='/booking'>
+               <button className="btn">Book Now</button>
+        </Link>
+
+   
       </div>
       <div className="navBottom">
         <Link to="/rooms">
@@ -38,9 +42,6 @@ const Navbar = () => {
         </Link>
         <Link to="/dining">
           Dining <span>&#183;</span>{" "}
-        </Link>
-        <Link to="/booking">
-          Booking <span>&#183;</span>{" "}
         </Link>
         <Link to="/tours">
           Tours <span>&#183;</span>{" "}

@@ -1,21 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { updateAdult, updateChildren, updateDate } from "../../actions/booking";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRangePicker } from "react-date-range";
-import "./BookWidget.scss";
+import "../../styles/BookWidget.scss"
 
 const BookWidget = () => {
+
   const dispatch = useDispatch();
   const history = useHistory();
   const [showCalender, setShowCalender] = useState(false);
+  const [showSingle, setShowSingle] = useState(false)
   const booking = useSelector((state) => state.bookings);
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+  }, [])
   const handleCalenderDisplay = (e) => {
     e.preventDefault();
     setShowCalender(!showCalender);
   };
+
+  const handleResize = () => {
+    if(window.innerWidth <= 690) {
+      return setShowSingle(true)
+    } else {
+      return setShowSingle(false)
+    }  
+   
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -95,7 +109,7 @@ const BookWidget = () => {
             onChange={(item) => dispatch(updateDate([item.selection]))}
             showSelectionPreview={true}
             moveRangeOnFirstSelection={false}
-            months={2}
+            months={showSingle ? 1 : 2}
             ranges={booking.dates}
             direction="horizontal"
           />

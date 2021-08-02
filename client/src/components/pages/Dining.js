@@ -1,16 +1,19 @@
 import React from "react";
-import "./Dining.scss";
+import "../../styles/Dining.scss";
 const Dining = () => {
   return (
     <div className="Dining">
-      <header
+      <header className='header-main'
         style={{
           background:
             ' no-repeat center/cover url("/img/dining/dining_header.jpg")',
         }}
       >
-        <h2 className="alt-font">Restaurant & Bar</h2>
+          <div className="header-content">
+              <h2 className="alt-font">Restaurant & Bar</h2>
         <p>Discover Phuket's best dining</p>
+          </div>
+      
       </header>
       <section className="desc">
         <h1 className="alt-font">Authentic Thai Cuisine</h1>
