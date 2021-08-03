@@ -50,7 +50,8 @@ const Dining = () => {
       </section>
       <section className="desc_photo">
         <div className="descLeft">
-          <h1 className="alt-font">Suay Bar & Lounge</h1>
+          <div>
+             <h1 className="alt-font">Suay Bar & Lounge</h1>
           <p>
             The stylish heart of our resort, Vista Bar and Lounge’s eclectic
             drinks, live entertainment and unfettered mountain views are
@@ -59,6 +60,8 @@ const Dining = () => {
             forms an irresistible backdrop to your cosmopolitan evening out, as
             Vista Bar buzzes with a sophisticated crowd.
           </p>
+          </div>
+         
         </div>
         <div className="descRight">
           <img src="/img/dining/dining_bar.jpg" alt="dining_bar" />

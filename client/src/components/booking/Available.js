@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "../../styles/Available.scss"
 import { getAllAvailable } from "../../actions/booking";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 // styling for the material ui progress circle
@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     "& > * + *": {
-      marginLeft: theme.spacing(2),
+      marginLeft: 16,
     },
   },
 }));

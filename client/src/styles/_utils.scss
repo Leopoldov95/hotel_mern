@@ -4,6 +4,16 @@
   outline: none;
   padding: 1rem;
   transition: all ease 300ms;
+  &-sm {
+    padding: 10px;
+
+    &:hover {
+      cursor: pointer;
+    background-color: black;
+    color: white;
+    transition: all ease 300ms;
+    }
+  } 
 
   &:hover {
     cursor: pointer;
@@ -12,6 +22,8 @@
     transition: all ease 300ms;
   }
 }
+
+
 
 .btn-alt {
   /*  border: solid 5px #fc5185; */
@@ -128,7 +140,7 @@
     flex-basis: 40%;
     text-align: center;
     div {
-      padding: 9rem 0;
+      padding: 25% 0;
     }
 
     h1 {
@@ -182,7 +194,7 @@
     font-weight: lighter;
     position: absolute;
     top: 0;
-    left: -50px;
+    left: -3%
   }
   .descLeft {
     width: 70%;
@@ -204,11 +216,33 @@
   .desc_main {
     padding: 1rem;
     grid-template-columns: 1fr 1fr;
+    .bg-light {
+      height: 110%;
+    }
+  }
+  .desc_photo {
+    .descLeft {
+      div {
+        h1 {
+          left: 1%;
+        }
+      }
+    }
   }
 }
 
-/* Tablet/Mobile */
+@media only screen and (max-width: 980px) {
+  .desc_photo {
+    .descLeft{
+      padding: 7rem 11rem 3rem 7rem;
+    }
+  }
+}
+/* Tablet */
 @media only screen and (max-width: 768px) {
+  .desc{
+    padding: 0 1rem;
+  }
   .desc_main{
     display: flex;
     flex-direction: column-reverse;
@@ -217,6 +251,61 @@
     left: 0;
     height: 100%;
     width: 100%;
+    }
+  }
+  .desc_sec{
+    flex-direction: column;
+    article {
+      padding-left: 0;
+      div {
+        padding: 2rem 0;
+      }
+    }
+  }
+  .desc_gallery{
+    flex-direction: column;
+    .descLeft{
+      text-align: center;
+      .img-container{
+        padding: 1rem;
+      }
+    }
+    .descRight{
+      padding: 1rem;
+    }
+  }
+  .desc_photo {
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 1rem;
+    margin: 0;
+    .descLeft{
+      width: 100%;
+      padding: 1rem;
+        h1 {
+          position: relative;
+          left: 0;
+          top: 0;
+        }
+    }
+    .descRight{
+      position: relative;
+      width: 100%;
+      top: 0;
+      right: 0;
+    }
+  }
+}
+
+/* Mobile */
+@media only screen and (max-width: 480px) {
+  .header-main {
+    height: 50vh;
+    .header-content {
+      p {
+        font-size: 18px;
+        padding: 0 2rem;
+      }
     }
   }
 }

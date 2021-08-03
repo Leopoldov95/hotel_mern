@@ -88,3 +88,19 @@
     display: block;
   }
 }
+
+/* Mobile */
+@media only screen and (max-width: 480px) {
+  .NavMobile {
+    .menu-top {
+      .brand {
+        h1 {
+          font-size: 14px;
+        }
+      }
+      .btn {
+        padding: 12px;
+      }
+    }
+  }
+}

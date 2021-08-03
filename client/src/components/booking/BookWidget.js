@@ -1,36 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import TextField from "@material-ui/core/TextField";
+import DateRangePicker from "@material-ui/lab/DateRangePicker";
+import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
+import LocalizationProvider from "@material-ui/lab/LocalizationProvider";
+import Box from "@material-ui/core/Box";
 import { updateAdult, updateChildren, updateDate } from "../../actions/booking";
-import "react-date-range/dist/styles.css"; // main style file
-import "react-date-range/dist/theme/default.css"; // theme css file
-import { DateRangePicker } from "react-date-range";
-import "../../styles/BookWidget.scss"
+import "../../styles/BookWidget.scss";
 
 const BookWidget = () => {
-
   const dispatch = useDispatch();
   const history = useHistory();
-  const [showCalender, setShowCalender] = useState(false);
-  const [showSingle, setShowSingle] = useState(false)
+  const [showInfo, setShowInfo] = useState(false)
+  const [value, setValue] = React.useState([null, null]);
   const booking = useSelector((state) => state.bookings);
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-  }, [])
-  const handleCalenderDisplay = (e) => {
-    e.preventDefault();
-    setShowCalender(!showCalender);
-  };
-
-  const handleResize = () => {
-    if(window.innerWidth <= 690) {
-      return setShowSingle(true)
-    } else {
-      return setShowSingle(false)
-    }  
-   
+  console.log(window.innerWidth)
+ 
+  const toggleMobileDisplay = () => {
+    if (window.innerWidth < 920) {
+      setShowInfo(!showInfo)
+    }
   }
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("manage the form or whatever");
@@ -40,36 +31,39 @@ const BookWidget = () => {
   return (
     <div className="BookWidget">
       <form onSubmit={handleSubmit}>
-        <div className="date">
-        <div onClick={() => setShowCalender(!showCalender)}>
-          <label>Start Date</label>
-          <div>
-            <i className="far fa-calendar-alt"></i>
-            <span>
-              {booking.dates[0].startDate.toLocaleDateString("en-US")}
-            </span>
-          </div>
+        <div className="date" onClick={toggleMobileDisplay}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DateRangePicker
+              startText="Check-in"
+              endText="Check-out"
+              value={value}
+              onChange={(newValue) => {
+                setValue(newValue);
+              }}
+              renderInput={(startProps, endProps) => (
+                <React.Fragment>
+                  <TextField {...startProps} />
+                  <Box sx={{ mx: 2 }}> to </Box>
+                  <TextField {...endProps} />
+                </React.Fragment>
+              )}
+            />
+          </LocalizationProvider>
+          <i className={`mobile-toggle fas fa-chevron-${showInfo ? 'up' : 'down'}`} onClick={toggleMobileDisplay}></i>
         </div>
-        <div onClick={() => setShowCalender(!showCalender)}>
-          <label>End Date</label>
-          <div>
-            <i className="far fa-calendar-alt"></i>
-            <span>{booking.dates[0].endDate.toLocaleDateString("en-US")}</span>
-          </div>
-        </div>
-        </div>
+        <div className='guests' style={{display: `${showInfo || window.innerWidth >= 960 ? 'flex' : 'none'}`}}>
         <div className="adults">
           <label>Adults</label>
           <div className="guest-select">
             <div
-              className="btn contrast"
+              className="btn-sm contrast"
               onClick={() => dispatch(updateAdult(1))}
             >
               <i className="fas fa-plus"></i>
             </div>
             <span>{booking.adults}</span>
             <div
-              className="btn contrast"
+              className="btn-sm contrast"
               onClick={() => {
                 dispatch(updateAdult(-1));
               }}
@@ -82,7 +76,7 @@ const BookWidget = () => {
           <label>Children</label>
           <div className="guest-select">
             <div
-              className="btn contrast"
+              className="btn-sm contrast"
               onClick={() => {
                 dispatch(updateChildren(1));
               }}
@@ -91,7 +85,7 @@ const BookWidget = () => {
             </div>
             <span>{booking.children}</span>
             <div
-              className="btn contrast"
+              className="btn-sm contrast"
               onClick={() => {
                 dispatch(updateChildren(-1));
               }}
@@ -100,21 +94,10 @@ const BookWidget = () => {
             </div>
           </div>
         </div>
-        <button className="btn">Check Availability</button>
+        </div>
+        
+        <button className="btn"  style={{display: `${showInfo || window.innerWidth >= 960 ? 'block' : 'none'}`}}>Check Availability</button>
       </form>
-      <div className="calender">
-        {showCalender && (
-          <DateRangePicker
-            /*  onChange={(item) => setState([item.selection])} */ // will need to use dispatch here to truly update the state
-            onChange={(item) => dispatch(updateDate([item.selection]))}
-            showSelectionPreview={true}
-            moveRangeOnFirstSelection={false}
-            months={showSingle ? 1 : 2}
-            ranges={booking.dates}
-            direction="horizontal"
-          />
-        )}
-      </div>
     </div>
   );
 };

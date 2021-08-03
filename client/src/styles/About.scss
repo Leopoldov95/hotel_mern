@@ -73,13 +73,15 @@
 @media only screen and (max-width: 1100px) {
   .About{
     .testimonials{
+      padding: 1rem;
       &-card {
         display: grid;
-        grid-template-columns: 1fr 2fr;
+        grid-template-columns: 2fr 3fr;
         align-items: center;
         .quote-container{
-          padding: 0 1rem;
+          padding: 1rem;
           margin-left: 1rem;
+          height: 100%;
         }
         .img-container {
              position: relative;
@@ -92,11 +94,13 @@
       }
       .reversed {
         .quote-container{
-          padding: 0 1rem;
+          padding: 1rem;
           margin-left: 1rem;
+          height: 100%;
         }
         .img-container {
           position: relative;
+          transform: none;
           width: 100%;
           flex-basis: 40%;
           right: 0;
@@ -108,3 +112,21 @@
   }
 }
 
+@media only screen and (max-width: 768px){
+  .About {
+    .testimonials {
+      margin: 0;
+      &-card {
+        grid-template-columns: 1fr;
+        .quote-container{
+          margin: 0;
+        }
+      }
+      .reversed {
+        .quote-container{
+          margin: 0;
+        }
+      }
+    }
+  }
+}

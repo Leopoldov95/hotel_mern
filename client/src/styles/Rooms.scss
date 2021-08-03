@@ -40,3 +40,25 @@
     }
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .Rooms {
+    .flex-row-lg {
+      padding: 0 1rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .Rooms {
+    img {
+      min-height: 100%;
+    }
+    .flex-row-lg{
+      flex-direction: column;
+      .card {
+        margin: 2rem 0 0 0;
+      }
+    }
+  }
+}

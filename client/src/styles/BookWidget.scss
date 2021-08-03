@@ -1,4 +1,7 @@
 .BookWidget {
+  i:hover {
+    cursor: pointer;
+  }
   background-color: white;
   position: absolute;
   top: 85%;
@@ -7,7 +10,7 @@
   box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.2);
   left: 50%;
   transform: translateX(-50%);
-  padding-top: 1rem;
+  padding: 2rem 0;
   z-index: 10;
   form {
     display: flex;
@@ -16,12 +19,12 @@
     align-items: center;
     .date {
       display: flex;
+      .mobile-toggle {
+        display: none;
+      }
       div {
         &:hover {
           cursor: pointer;
-        }
-        &:nth-child(1) {
-          margin-right: 2rem;
         }
         label {
           display: inline-block;
@@ -32,40 +35,53 @@
         }
       }
     }
-    .guest-select {
-      margin-top: 1rem;
+    .guests{
       display: flex;
-      align-items: center;
-      span {
-        padding: 0 1rem;
+      .adults {
+        margin-right: 2rem;
+      }
+      .guest-select {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        span {
+          padding: 0 1rem;
+        }
       }
     }
   }
-  .calender {
-    padding: 2rem 0 0 5rem;
+}
+
+/* Large Screen */
+@media only screen and (max-width: 1100px) {
+  .BookWidget {
+    width: 97%;
+    form {
+     margin: 0 1rem;
+    }
   }
 }
 
 /* Book Widget tablet/mobile */
-@media only screen and (max-width: 920px) {
-  .BookWidget {
-    width: 97%;
+@media only screen and (max-width: 920px){
+  .BookWidget{
+    padding: 1.4rem 0;
     form {
       flex-direction: column;
       .date {
-        width: 100%;
-    justify-content: space-around;
-   
-        &>div {
-          background-color: #dbd5cd;
-          padding: 1rem 4rem;
-          }
+        align-items: center;
+        
+        .mobile-toggle {
+          display: inline-block;
+          padding-left: 12px;
+          font-size: 1.5rem;
+        }
       }
-    }
-    .calender {
-      padding: 0;
-      text-align: center;
-      .rdrDefinedRangesWrapper {
+      .guests {
+        display: none;
+        margin: 1.2rem 0;
+      }
+      button {
         display: none;
       }
     }
