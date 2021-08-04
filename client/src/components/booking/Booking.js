@@ -6,16 +6,13 @@ import {
   updateDate,
   getAllAvailable,
 } from "../../actions/booking";
-import { displayIcon } from "../helper/Icons";
-import "react-date-range/dist/styles.css"; // main style file
-import "react-date-range/dist/theme/default.css"; // theme css file
-import { DateRangePicker } from "react-date-range";
+import BookingWidget from './BookWidget'
+import Available from "./Available";
 import "../../styles/Booking.scss"
 const Booking = (props) => {
   const dispatch = useDispatch();
   const booking = useSelector((state) => state.bookings);
   const bookingsAPI = useSelector((state) => state.bookingsAPI);
-  const [showCalender, setShowCalender] = useState(false);
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     console.log("You are looking for a booking based on existing ID");
@@ -53,84 +50,10 @@ const Booking = (props) => {
       <section className="desc">
         <h1 className="alt-font">BOOK A ROOM</h1>
       </section>
-      <form className="displayInfo" onSubmit={handleSubmit}>
-        <div onClick={() => setShowCalender(!showCalender)}>
-          <label>Start Date</label>
-          <div>
-            <i className="far fa-calendar-alt"></i>
-            <span>
-              {booking.dates[0].startDate.toLocaleDateString("en-US")}
-            </span>
-          </div>
-        </div>
-        <div onClick={() => setShowCalender(!showCalender)}>
-          <label>End Date</label>
-          <div>
-            <i className="far fa-calendar-alt"></i>
-            <span>{booking.dates[0].endDate.toLocaleDateString("en-US")}</span>
-          </div>
-        </div>
-        <div className="adults">
-          <label>Adults</label>
-          <div className="guest-select">
-            <div
-              className="btn contrast"
-              onClick={() => {
-                dispatch(updateAdult(1));
-              }}
-            >
-              <i className="fas fa-plus"></i>
-            </div>
-            <span>{booking.adults}</span>
-            <div
-              className="btn contrast"
-              onClick={() => {
-                dispatch(updateAdult(-1));
-              }}
-            >
-              <i className="fas fa-minus"></i>
-            </div>
-          </div>
-        </div>
-        <div className="children">
-          <label>Children</label>
-          <div className="guest-select">
-            <div
-              className="btn contrast"
-              onClick={() => {
-                dispatch(updateChildren(1));
-              }}
-            >
-              <i className="fas fa-plus"></i>
-            </div>
-            <span>{booking.children}</span>
-            <div
-              className="btn contrast"
-              onClick={() => {
-                dispatch(updateChildren(-1));
-              }}
-            >
-              <i className="fas fa-minus"></i>
-            </div>
-          </div>
-        </div>
-        <button className="btn contrast">Check Availability</button>
-      </form>
-      <section className="calenderContainer">
-        {showCalender && (
-          <DateRangePicker
-            onChange={(item) => dispatch(updateDate([item.selection]))}
-            showSelectionPreview={true}
-            moveRangeOnFirstSelection={false}
-            months={2}
-            ranges={booking.dates}
-            direction="horizontal"
-          />
-        )}
-      </section>
-      <section className="bookingResults">
+      <BookingWidget />
+   {/*    <section className="bookingResults"> */}
         {bookingsAPI.booking && bookingsAPI.booking.length > 0
-          ? bookingsAPI.booking.map((room) => (
+          && <Available /> } {/*  bookingsAPI.booking.map((room) => (
               <div className="room-card" key={room.url}>
                 <div className="card-img">
                   <img
@@ -183,8 +106,8 @@ const Booking = (props) => {
                 </div>
               </div>
             ))
-          : ""}
-      </section>
+          : "" }
+       </section>  */}
     </div>
   );
 };

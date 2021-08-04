@@ -4,10 +4,17 @@ import {
   CHILDREN,
   CHANGE_DATE,
   AVAILABLE,
+  INFO_DET,
+  ROOM_DET
 } from "../constants/actionTypes";
 import { addDays } from "date-fns";
 
-// this will be used to manage state/API booking
+// this will be used to manage state/API booking, check for available bookings and create one
+/* state = {
+  room: [], // room to be booked
+  booking: [], // basic booking info
+  details: [] // giest details
+} */
 export const bookingAPIReducer = (booking = [], action) => {
   switch (action.type) {
     case AVAILABLE:
@@ -19,16 +26,27 @@ export const bookingAPIReducer = (booking = [], action) => {
   }
 };
 
-// this will used to manage the booking state locally
+export const bookingDetails = (
+  state = {
+    details: [],
+    room: []
+  
+}, action) => {
+  switch(action.type) {
+
+    case ROOM_DET:
+      return{...state, room: action.payload}
+    case INFO_DET:
+      return{...state, details: action.payload}
+    default:
+      return state
+  }
+}
+
+// this will used to manage the booking state locally, this what you see on the booking widget and what gets send to the server
 export const bookingReducer = (
   state = {
-    dates: [
-      {
-        startDate: new Date(),
-        endDate: addDays(new Date(), 7),
-        key: "selection",
-      },
-    ],
+    dates: [new Date(), addDays(new Date(), 7)],
     adults: 1,
     children: 0,
     pricePerNight: null,

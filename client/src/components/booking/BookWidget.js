@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import Available from "./Available";
 import TextField from "@material-ui/core/TextField";
 import DateRangePicker from "@material-ui/lab/DateRangePicker";
 import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
 import LocalizationProvider from "@material-ui/lab/LocalizationProvider";
 import Box from "@material-ui/core/Box";
-import { updateAdult, updateChildren, updateDate } from "../../actions/booking";
+import { updateAdult, updateChildren, updateDate, getAllAvailable } from "../../actions/booking";
 import "../../styles/BookWidget.scss";
 
 const BookWidget = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const location = useLocation();
   const [showInfo, setShowInfo] = useState(false)
-  const [value, setValue] = React.useState([null, null]);
+ /*  const [value, setValue] = useState([null, null]); */
   const booking = useSelector((state) => state.bookings);
-  console.log(window.innerWidth)
+  const bookingsAPI = useSelector((state) => state.bookingsAPI);
  
   const toggleMobileDisplay = () => {
     if (window.innerWidth < 920) {
@@ -24,10 +26,14 @@ const BookWidget = () => {
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("manage the form or whatever");
-    history.push("/booking/availability");
+    const { adults, children, dates } = booking;
+    console.log(adults, children, dates);
+    if (location.pathname !== '/booking') {
+       history.push("/booking");
+    }
+   dispatch(getAllAvailable({ adults, children, dates })); 
   };
-
+/* onChange={(item) => dispatch(updateDate([item.selection]))} */
   return (
     <div className="BookWidget">
       <form onSubmit={handleSubmit}>
@@ -36,9 +42,10 @@ const BookWidget = () => {
             <DateRangePicker
               startText="Check-in"
               endText="Check-out"
-              value={value}
+              value={booking.dates}
               onChange={(newValue) => {
-                setValue(newValue);
+                dispatch(updateDate(newValue))
+               /*  setValue(newValue); */
               }}
               renderInput={(startProps, endProps) => (
                 <React.Fragment>

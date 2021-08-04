@@ -8,6 +8,10 @@ export const FETCH_ROOMS = "FETCH_ROOMS"; // grabs all rooms, for Rooms componen
 export const ROOM = "ROOM"; // grabs specified room, for Room Component
 export const AVAILABLE = "AVAILABLE"; // shows all available rooms
 
+// Booking details action
+export const ROOM_DET = 'ROOM_DET';
+export const INFO_DET = 'INFO_DET';
+
 // Local state management
 export const ADULT = "ADULT";
 export const CHILDREN = "CHILDREN";

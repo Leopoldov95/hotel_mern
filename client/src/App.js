@@ -12,6 +12,7 @@ import About from "./components/pages/About";
 import Tour from "./components/pages/Tour";
 import Booking from "./components/booking/Booking";
 import Available from "./components/booking/Available";
+import Checkout from './components/booking/Checkout';
 import Auth from "./components/auth/Auth";
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/tours" exact component={Tour} />
         <Route path="/booking" exact component={Booking} />
         <Route path="/booking/availability" exact component={Available} />
+        <Route path="/booking/checkout" exact component={Checkout} />
         <Route path="/admin" exact component={Auth} />
       </Switch>
       <Footer />

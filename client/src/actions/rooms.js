@@ -1,6 +1,7 @@
 import { FETCH_ROOMS, ROOM } from "../constants/actionTypes";
 import * as api from "../api";
 
+/* This is to grab all rooms from the db */
 export const getAllRooms = () => async (dispatch) => {
   try {
     const { data } = await api.fetchRooms();
@@ -10,6 +11,7 @@ export const getAllRooms = () => async (dispatch) => {
   }
 };
 
+/* This is to grab & display a single room on the client side */
 export const getRoom = (url) => async (dispatch) => {
   try {
     const { data } = await api.fetchRoom(url);
