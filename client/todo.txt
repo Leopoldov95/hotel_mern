@@ -1,0 +1,9 @@
+set local storage to:
+- Avaibality
+- Checout
+
+Redo Redux
+- reducers/state management for:
+    - All rooms
+    - Single room to display
+    

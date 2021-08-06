@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "../../styles/Available.scss";
-import { postBookingDetails } from "../../actions/booking";
+import { postRoomDetails } from "../../actions/booking";
 import { makeStyles } from "@material-ui/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { displayIcon } from "../helper/Icons";
@@ -27,7 +27,9 @@ const Available = () => {
   const classes = useStyles();
 
   const handleSubmit = (room) => {
-    dispatch(postBookingDetails(room));
+    // For the purpsoses of booking info, we only want to have the title
+    dispatch(postRoomDetails(room.title));
+    // we want to save our room to localStorage at this point
     history.push("/booking/checkout");
   };
   const totalNights = booking.dates[1].getDate() - booking.dates[0].getDate();

@@ -6,6 +6,7 @@ import {
   CHANGE_DATE,
   INFO_DET,
   ROOM_DET,
+  BOOK_DET
 } from "../constants/actionTypes";
 import * as api from "../api";
 
@@ -45,7 +46,7 @@ export const getAllAvailable = (params) => async (dispatch) => {
 
 // Actions for booking details
 
-export const postBookingDetails = (data) => {
+export const postRoomDetails = (data) => {
   return {
     type: ROOM_DET,
     payload: data,
@@ -55,6 +56,13 @@ export const postBookingDetails = (data) => {
 export const postGuestDetails = (data) => {
   return {
     type: INFO_DET,
+    payload: data,
+  };
+};
+
+export const postBookingDetails = (data) => {
+  return {
+    type: BOOK_DET,
     payload: data,
   };
 };

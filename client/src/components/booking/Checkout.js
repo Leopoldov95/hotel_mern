@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   postGuestDetails,
   postBooking,
-  postBookingDetails,
 } from "../../actions/booking";
 import { makeStyles } from "@material-ui/styles";
 import TextField from "@material-ui/core/TextField";
@@ -90,9 +89,10 @@ const Checkout = () => {
       setMsg("Must be a valid email");
       return setError(true);
     }
-    dispatch(postGuestDetails(formData));
+    dispatch(postGuestDetails(formData))
     // at this point all guest details will be proided
-    dispatch(postBooking(guestDetails));
+    console.log(guestDetails)
+    dispatch(postBooking(guestDetails)); 
     // create a booking for the guest
     history.push("/booking/confirm");
   };

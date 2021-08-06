@@ -5,7 +5,8 @@ import {
   CHANGE_DATE,
   AVAILABLE,
   INFO_DET,
-  ROOM_DET
+  ROOM_DET,
+  BOOK_DET
 } from "../constants/actionTypes";
 import { addDays } from "date-fns";
 
@@ -26,11 +27,13 @@ export const bookingAPIReducer = (booking = [], action) => {
   }
 };
 
+// the booking details will be provided here
+
 export const bookingDetails = (
   state = {
     details: [],
-    room: []
-  
+    booking: [],
+    room: '', // need to store room title and price, else checkout will have errors
 }, action) => {
   switch(action.type) {
 
@@ -38,6 +41,8 @@ export const bookingDetails = (
       return{...state, room: action.payload}
     case INFO_DET:
       return{...state, details: action.payload}
+    case BOOK_DET:
+      return {...state, booking: action.payload}
     default:
       return state
   }

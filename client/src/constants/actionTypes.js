@@ -11,6 +11,7 @@ export const AVAILABLE = "AVAILABLE"; // shows all available rooms
 // Booking details action
 export const ROOM_DET = 'ROOM_DET';
 export const INFO_DET = 'INFO_DET';
+export const BOOK_DET = 'BOOK_DET';
 
 // Local state management
 export const ADULT = "ADULT";
