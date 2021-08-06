@@ -1,7 +1,12 @@
+// may want to savetolocalsrage the guest details
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { postGuestDetails } from "../../actions/booking";
+import {
+  postGuestDetails,
+  postBooking,
+  postBookingDetails,
+} from "../../actions/booking";
 import { makeStyles } from "@material-ui/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -57,6 +62,7 @@ const Checkout = () => {
     cardNum: "0112358132134558",
   });
   const { room } = useSelector((state) => state.details);
+  const guestDetails = useSelector((state) => state.details);
   const booking = useSelector((state) => state.bookings);
   //if (room.length < 1) history.push("/");
   const handleSubmit = (e) => {
@@ -86,6 +92,7 @@ const Checkout = () => {
     }
     dispatch(postGuestDetails(formData));
     // at this point all guest details will be proided
+    dispatch(postBooking(guestDetails));
     // create a booking for the guest
     history.push("/booking/confirm");
   };

@@ -59,4 +59,11 @@ export const postGuestDetails = (data) => {
   };
 };
 
-export const postBooking = (data) => async (dispatch) => {};
+export const postBooking = (details) => async (dispatch) => {
+  try {
+    const { data } = await api.createBooking(details);
+    dispatch({ type: CREATE, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};

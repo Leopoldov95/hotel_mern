@@ -10,7 +10,12 @@ export const getBookings = async (req, res) => {
 
 export const postBooking = async (req, res) => {
   try {
-  } catch (error) {}
+    const data = req.body;
+    console.log(data);
+    res.status(200).json({ message: "You want to create a booking" });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
 };
 
 export const getAllAvailable = async (req, res) => {
