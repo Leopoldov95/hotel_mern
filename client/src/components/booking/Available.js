@@ -3,18 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "../../styles/Available.scss";
 import { postRoomDetails } from "../../actions/booking";
-import { makeStyles } from "@material-ui/styles";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import { displayIcon } from "../helper/Icons";
 // styling for the material ui progress circle
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    "& > * + *": {
-      marginLeft: 16,
-    },
-  },
-}));
 
 const Available = () => {
   // when storing and managind date in the database, make sure to first convert it to US format!!
@@ -22,22 +12,19 @@ const Available = () => {
   const history = useHistory();
   const booking = useSelector((state) => state.bookings);
   const bookingsAPI = useSelector((state) => state.bookingsAPI);
-  const details = useSelector((state) => state.details);
+ // const details = useSelector((state) => state.details);
 
-  const classes = useStyles();
 
   const handleSubmit = (room) => {
-    // For the purpsoses of booking info, we only want to have the title
-    dispatch(postRoomDetails(room.title));
+    // For the purpsoses of booking info, we only want to have the title and price per night
+    const {title, price} =room;
+    dispatch(postRoomDetails({title, price}));
     // we want to save our room to localStorage at this point
     history.push("/booking/checkout");
   };
   const totalNights = booking.dates[1].getDate() - booking.dates[0].getDate();
   return (
     <div className="Available">
-      {/* <div className={classes.root}>
-        <CircularProgress />
-      </div> */}
       {bookingsAPI.booking.map((room) => (
         <div className="room-card" key={room.url}>
           <div className="card-img">

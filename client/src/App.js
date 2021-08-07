@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./styles/App.scss";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import NavMobile from "./components/navbar/NavMoblile";
 import Home from "./components/pages/Home";
@@ -16,8 +16,13 @@ import Checkout from "./components/booking/Checkout";
 import Confirm from "./components/booking/Confirm";
 import Auth from "./components/auth/Auth";
 const App = () => {
+   const location = useLocation();
+ /* const history = useHistory(); */
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location])
   return (
-    <Router>
+  <>
       <Navbar />
       <NavMobile />
       <Switch>
@@ -38,7 +43,7 @@ const App = () => {
         <Route path="/admin" exact component={Auth} />
       </Switch>
       <Footer />
-    </Router>
+    </>
   );
 };
 

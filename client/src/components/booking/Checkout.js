@@ -89,10 +89,12 @@ const Checkout = () => {
       setMsg("Must be a valid email");
       return setError(true);
     }
-    dispatch(postGuestDetails(formData))
+
+    //different appraoch, dont save guest details, just push formdat and other info to api
+    // dispatch(postGuestDetails(formData))
     // at this point all guest details will be proided
-    console.log(guestDetails)
-    dispatch(postBooking(guestDetails)); 
+    
+    dispatch(postBooking({formData, guestDetails})); 
     // create a booking for the guest
     history.push("/booking/confirm");
   };

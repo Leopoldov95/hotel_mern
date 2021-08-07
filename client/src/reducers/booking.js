@@ -31,16 +31,13 @@ export const bookingAPIReducer = (booking = [], action) => {
 
 export const bookingDetails = (
   state = {
-    details: [],
     booking: [],
-    room: '', // need to store room title and price, else checkout will have errors
+    room: [], // need to store room title and price, else checkout will have errors
 }, action) => {
   switch(action.type) {
 
     case ROOM_DET:
       return{...state, room: action.payload}
-    case INFO_DET:
-      return{...state, details: action.payload}
     case BOOK_DET:
       return {...state, booking: action.payload}
     default:

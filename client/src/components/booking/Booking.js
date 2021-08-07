@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  updateAdult,
-  updateChildren,
-  updateDate,
   getAllAvailable,
 } from "../../actions/booking";
 import BookingWidget from './BookWidget'
@@ -53,61 +50,7 @@ const Booking = (props) => {
       <BookingWidget />
    {/*    <section className="bookingResults"> */}
         {bookingsAPI.booking && bookingsAPI.booking.length > 0
-          && <Available /> } {/*  bookingsAPI.booking.map((room) => (
-              <div className="room-card" key={room.url}>
-                <div className="card-img">
-                  <img
-                    src={`img/rooms/${room.mainImage}`}
-                    alt={room.mainImage}
-                  />
-                </div>
-                <div className="card-info">
-                  <h2 className="alt-font">{room.title}</h2>
-                  <span className="location">
-                    <i className="fas fa-map-marker-alt"></i> Suay Resort,
-                    Phuket
-                  </span>
-                  <div className="details">
-                    <div>
-                      <label>Size:</label>
-                      <p>{room.size}</p>
-                    </div>
-                    <div>
-                      <label>Occupancy:</label>
-                      <p>{`${room.adults} Adults & ${room.children} Children`}</p>
-                    </div>
-                    <div>
-                      <label>Bedding:</label>
-                      <p>{room.bedding}</p>
-                    </div>
-                  </div>
-                  <div className="amenities">
-                    <label>Amenities:</label>
-                    <ul>
-                      {room.amenities.map((item) => (
-                        <li key={item}>
-                          <i className={`${displayIcon(item)}`}></i>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="card-price">
-                  <div>
-                    <label>Daily Price</label>
-                    <h4>{`$${room.price}`}</h4>
-                  </div>
-                  <div>
-                    <label>Total</label>
-                    <h4>{`$${room.price * 5}`}</h4>
-                  </div>
-                  <button className="btn contrast">Book</button>
-                </div>
-              </div>
-            ))
-          : "" }
-       </section>  */}
+          ? <Available /> : <div className='filler'></div> } 
     </div>
   );
 };

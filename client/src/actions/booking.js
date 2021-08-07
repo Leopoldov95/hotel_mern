@@ -4,7 +4,6 @@ import {
   ADULT,
   CHILDREN,
   CHANGE_DATE,
-  INFO_DET,
   ROOM_DET,
   BOOK_DET
 } from "../constants/actionTypes";
@@ -53,13 +52,6 @@ export const postRoomDetails = (data) => {
   };
 };
 
-export const postGuestDetails = (data) => {
-  return {
-    type: INFO_DET,
-    payload: data,
-  };
-};
-
 export const postBookingDetails = (data) => {
   return {
     type: BOOK_DET,
@@ -69,7 +61,9 @@ export const postBookingDetails = (data) => {
 
 export const postBooking = (details) => async (dispatch) => {
   try {
-    const { data } = await api.createBooking(details);
+    const newBooking = {...details.formData, ...details.guestDetails.booking, ...details.guestDetails.room}
+    console.log(newBooking)
+    const { data } = await api.createBooking(newBooking);
     dispatch({ type: CREATE, payload: data });
   } catch (error) {
     console.log(error);
