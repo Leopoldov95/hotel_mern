@@ -1,27 +1,24 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import {useHistory} from 'react-router-dom'
 import {
-  getAllAvailable,
+ getSingleBooking
 } from "../../actions/booking";
 import BookingWidget from './BookWidget'
 import Available from "./Available";
 import "../../styles/Booking.scss"
 const Booking = (props) => {
   const dispatch = useDispatch();
-  const booking = useSelector((state) => state.bookings);
+  const history = useHistory();
   const bookingsAPI = useSelector((state) => state.bookingsAPI);
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    console.log("You are looking for a booking based on existing ID");
 
-    // return error if booking does not exist
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("you want to create/look for a new booking");
-    const { adults, children, dates } = booking;
-    dispatch(getAllAvailable({ adults, children, dates }));
+    console.log('you want to look for an existing booking')
+    const value = e.target[0].value.toUpperCase();
+    dispatch(getSingleBooking(value));
+    history.push('/booking/existing')
   };
 
   return (
@@ -39,8 +36,8 @@ const Booking = (props) => {
       </header>
       <section className="existing">
         <label>Already have a Booking?</label>
-        <form onSubmit={handleSearchSubmit}>
-          <input type="text" placeholder="Enter Confirmation Code" />
+        <form onSubmit={handleSubmit}>
+          <input maxLength="6" type="text" placeholder="Enter Confirmation Code" />
           <button className="btn contrast">Lookup</button>
         </form>
       </section>

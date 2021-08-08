@@ -4,9 +4,10 @@ import {
   CHILDREN,
   CHANGE_DATE,
   AVAILABLE,
-  INFO_DET,
   ROOM_DET,
-  BOOK_DET
+  BOOK_DET,
+  FETCH,
+  FETCH_ALL
 } from "../constants/actionTypes";
 import { addDays } from "date-fns";
 
@@ -27,6 +28,16 @@ export const bookingAPIReducer = (booking = [], action) => {
   }
 };
 
+export const existingBookingReducer = (booking =[], action) => {
+  switch(action.type) {
+    case FETCH:
+        return {booking: action.payload}
+    case FETCH_ALL:
+        return {booking: action.payload}
+    default:
+      return booking;
+  }
+}
 // the booking details will be provided here
 
 export const bookingDetails = (

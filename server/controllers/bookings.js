@@ -1,11 +1,21 @@
-import mongoose from "mongoose";
 import Bookings from "../models/bookings.js";
 import Rooms from "../models/rooms.js";
-import { checkBooking, geenerateID } from "./helper.js";
+import { generateID } from "./helper.js";
 
-export const getBookings = async (req, res) => {
+export const getBooking = async (req, res) => {
   try {
-  } catch (error) {}
+    const data = req.body;
+    const existingBooking = Bookings.find({confirmation: data})
+
+    console.log(existingBooking)
+    if (existingBooking) {
+      return res.status(200).json({ result: existingBooking }); 
+    } else {
+      return res.status(404).json({ message: error.message });
+    }
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
 };
 
 export const postBooking = async (req, res) => {
@@ -24,13 +34,23 @@ export const postBooking = async (req, res) => {
       paymentType,
       cardNum,
     } = data;
-    console.log(firstName);
     // create a unique booking ID
-    const newId = geenerateID(6);
+    let newId = generateID(6);
     console.log(newId);
     const totalNights =
       new Date(dates[1]).getDate() - new Date(dates[0]).getDate();
     // check if ID already exists
+    // first get all ID's and store them in an array
+    const idArr = [];
+    const allUsers = await Bookings.find();
+    allUsers.forEach((info) => {
+      idArr.push(info.comfirmation)
+    })
+ // then use a while loop, as long as the new ID matches an item in the array, create a new one
+    while (idArr.includes(newId)) {
+      newId = generateID(6)
+    }
+   
 
     // create a new booking in the MongoDB DB
     const result = await Bookings.create({
@@ -48,8 +68,7 @@ export const postBooking = async (req, res) => {
       cardNum,
       confirmation: newId,
     });
-    /* console.log(data) */
-    res.status(200).json({ result: result });
+    res.status(200).json({ result: result }); 
   } catch (error) {
     console.log(error);
     res.status(404).json({ message: error.message });

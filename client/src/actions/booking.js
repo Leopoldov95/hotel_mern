@@ -1,5 +1,6 @@
 import {
   CREATE,
+  FETCH,
   AVAILABLE,
   ADULT,
   CHILDREN,
@@ -69,3 +70,12 @@ export const postBooking = (details) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const getSingleBooking = (id) => async (dispatch) => {
+  try {
+    const {data} = await api.fetchExistingBooking(id);
+    dispatch({type: FETCH, payload: data});
+  } catch (error) {
+    console.log(error)
+  }
+}
