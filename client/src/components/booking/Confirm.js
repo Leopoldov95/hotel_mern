@@ -11,8 +11,6 @@ import "../../styles/Confirm.scss";
 const Confirm = () => {
   const history = useHistory();
   const details = useSelector((state) => state.details);
-  console.log(details);
-
   return (
     <div className="Confirm">
       <h1>Welcome to the confirmation page</h1>

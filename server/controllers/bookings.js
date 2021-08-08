@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import bookings from "../models/bookings.js";
 import Bookings from "../models/bookings.js";
 import Rooms from "../models/rooms.js";
 import { checkBooking, geenerateID } from "./helper.js";
@@ -12,21 +11,47 @@ export const getBookings = async (req, res) => {
 export const postBooking = async (req, res) => {
   try {
     const data = req.body; // we now have the data to create a new booking
-    console.log(...data)
+    const {
+      firstName,
+      lastName,
+      email,
+      phone,
+      adults,
+      children,
+      dates,
+      title,
+      price,
+      paymentType,
+      cardNum,
+    } = data;
+    console.log(firstName);
     // create a unique booking ID
     const newId = geenerateID(6);
-    console.log(newId)
-    const totalNights = data.dates[1].getDate() - data.dates[0].getDate();
-    console.log(totalNights)
+    console.log(newId);
+    const totalNights =
+      new Date(dates[1]).getDate() - new Date(dates[0]).getDate();
     // check if ID already exists
 
     // create a new booking in the MongoDB DB
-    /* const result = await Bookings.create({
-      
-    });  */
-     /* console.log(data) */
-    res.status(200).json({ message: "You want to create a booking" });
+    const result = await Bookings.create({
+      firstName,
+      lastName,
+      email,
+      phone,
+      adults,
+      children,
+      startDate: dates[0],
+      endDate: dates[1],
+      title,
+      price: price * totalNights,
+      cardType: paymentType,
+      cardNum,
+      confirmation: newId,
+    });
+    /* console.log(data) */
+    res.status(200).json({ result: result });
   } catch (error) {
+    console.log(error);
     res.status(404).json({ message: error.message });
   }
 };
