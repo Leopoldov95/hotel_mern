@@ -11,4 +11,5 @@ Redo Redux
 - check for existing booking
 - handle date collision
 - admin page(s)
+- ensure booking stores room info
     

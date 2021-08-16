@@ -63,7 +63,6 @@ export const postBookingDetails = (data) => {
 export const postBooking = (details) => async (dispatch) => {
   try {
     const newBooking = {...details.formData, ...details.guestDetails.booking, ...details.guestDetails.room}
-    console.log(newBooking)
     const { data } = await api.createBooking(newBooking);
     dispatch({ type: CREATE, payload: data });
   } catch (error) {

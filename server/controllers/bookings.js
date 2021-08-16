@@ -4,10 +4,18 @@ import { generateID } from "./helper.js";
 
 export const getBooking = async (req, res) => {
   try {
-    const data = req.body;
-    const existingBooking = Bookings.find({confirmation: data})
+    let existingBooking
+    const {confirmation, email} = req.body;
+    
+    if (confirmation.length > 0) {
+      existingBooking = await Bookings.find({confirmation: confirmation.toUpperCase()})
+    } else if (email.length > 0) {
+      existingBooking = await Bookings.find({email: email})
+    } else {
+      return res.status(404).json({ message: error.message });
+    } 
 
-    console.log(existingBooking)
+   /* console.log(existingBooking) */
     if (existingBooking) {
       return res.status(200).json({ result: existingBooking }); 
     } else {
@@ -30,6 +38,7 @@ export const postBooking = async (req, res) => {
       children,
       dates,
       title,
+      room,
       price,
       paymentType,
       cardNum,
@@ -58,6 +67,7 @@ export const postBooking = async (req, res) => {
       lastName,
       email,
       phone,
+      room,
       adults,
       children,
       startDate: dates[0],

@@ -15,6 +15,7 @@ import Available from "./components/booking/Available";
 import Checkout from "./components/booking/Checkout";
 import Confirm from "./components/booking/Confirm";
 import Auth from "./components/auth/Auth";
+import Existing from "./components/booking/Existing"
 const App = () => {
    const location = useLocation();
  /* const history = useHistory(); */
@@ -40,6 +41,7 @@ const App = () => {
         <Route path="/booking/availability" exact component={Available} />
         <Route path="/booking/checkout" exact component={Checkout} />
         <Route path="/booking/confirm" exact component={Confirm} />
+        <Route path="/booking/existing" exact component={Existing} />
         <Route path="/admin" exact component={Auth} />
       </Switch>
       <Footer />

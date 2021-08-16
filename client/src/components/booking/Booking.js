@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {useHistory} from 'react-router-dom'
 import {
@@ -11,13 +11,22 @@ const Booking = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const bookingsAPI = useSelector((state) => state.bookingsAPI);
-
-
+  const [formData, setFormData] = useState({
+    confirmation: '',
+    email: ''
+  });
+  const [error, setError] = useState('')
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('you want to look for an existing booking')
-    const value = e.target[0].value.toUpperCase();
-    dispatch(getSingleBooking(value));
+    if (formData.confirmation.length > 0 && formData.email.length > 0) {
+      return setError('Only Fill out ONE of these fields.')
+    }
+    // check if user has entered 6 characters else 
+    
+    dispatch(getSingleBooking(formData));
     history.push('/booking/existing')
   };
 
@@ -36,10 +45,12 @@ const Booking = (props) => {
       </header>
       <section className="existing">
         <label>Already have a Booking?</label>
-        <form onSubmit={handleSubmit}>
-          <input maxLength="6" type="text" placeholder="Enter Confirmation Code" />
-          <button className="btn contrast">Lookup</button>
+        <form >
+          <input maxLength="6" name='confirmation' type="text" placeholder="Enter Confirmation Code" value={formData.confirmation} onChange={handleChange} />
+          <input  name='email' type="text" placeholder="Or Enter Email" value={formData.email} onChange={handleChange} />
+          <button onClick={handleSubmit} className="btn contrast">Lookup</button>
         </form>
+        {error.length > 0 && <span style={{color: 'red'}}>{error}</span>}
       </section>
       <section className="desc">
         <h1 className="alt-font">BOOK A ROOM</h1>

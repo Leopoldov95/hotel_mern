@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import auth from "./auth";
-import { bookingAPIReducer, bookingReducer, bookingDetails } from "./booking";
+import { bookingAPIReducer, bookingReducer, bookingDetails, existingBookingReducer } from "./booking";
 import rooms from "./rooms";
 
 export default combineReducers({
@@ -8,5 +8,6 @@ export default combineReducers({
   bookingsAPI: bookingAPIReducer,
   bookings: bookingReducer,
   details: bookingDetails,
+  existing: existingBookingReducer,
   rooms,
 });

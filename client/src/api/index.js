@@ -8,7 +8,7 @@ export const fetchRooms = () => API.get("/rooms");
 export const fetchRoom = (url) => API.post(`/rooms/${url}`);
 export const fetchAvailableRooms = (data) =>
   API.post("/bookings/available", data);
-export const fetchExistingBooking = (data) => API.post("/bookings", data)
+export const fetchExistingBooking = (data) => API.post("/bookings", data);
 export const createBooking = (data) => API.post("/bookings/create", data);
 /* export const fetchPosts = () => API.get("/posts");
 export const createPost = (newPost) => API.post("/posts", newPost);

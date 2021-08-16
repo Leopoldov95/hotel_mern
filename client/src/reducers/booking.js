@@ -12,11 +12,6 @@ import {
 import { addDays } from "date-fns";
 
 // this will be used to manage state/API booking, check for available bookings and create one
-/* state = {
-  room: [], // room to be booked
-  booking: [], // basic booking info
-  details: [] // giest details
-} */
 export const bookingAPIReducer = (booking = [], action) => {
   switch (action.type) {
     case AVAILABLE:
