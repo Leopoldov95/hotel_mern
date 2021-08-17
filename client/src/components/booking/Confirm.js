@@ -11,8 +11,19 @@ import "../../styles/Confirm.scss";
 const Confirm = () => {
   const history = useHistory();
   const details = useSelector((state) => state.details);
+  console.log(details)
   return (
     <div className="Confirm">
+      <header
+        className="header-main"
+        style={{
+          background: `no-repeat center/cover url("/img/booking/confirm_header.jpg")`,
+        }}
+      >
+        <div className="header-content">
+          <h2 className="alt-font">Enjoy Your Stay!</h2>
+        </div>
+      </header>
       <h1>Welcome to the confirmation page</h1>
     </div>
   );

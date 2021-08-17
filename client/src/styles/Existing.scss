@@ -1,0 +1,32 @@
+.Existing {
+    .card {
+        width: 100%;
+        max-width: 1000px;
+        margin: auto;
+        background-color: #dbd5cd;
+        .info{
+            display: flex;
+        flex-direction: column;
+        text-align: center;
+         div {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+        }
+        }
+       
+        .actions {
+            .delete-btn {
+                color: red;
+                outline: none;
+                border: 2px solid red;
+                padding: 8px 10px;
+                background-color: transparent;
+                border-radius: 5px;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

@@ -45,7 +45,6 @@ export const postBooking = async (req, res) => {
     } = data;
     // create a unique booking ID
     let newId = generateID(6);
-    console.log(newId);
     const totalNights =
       new Date(dates[1]).getDate() - new Date(dates[0]).getDate();
     // check if ID already exists
@@ -83,6 +82,17 @@ export const postBooking = async (req, res) => {
   }
 };
 
+export const deleteBooking = async (req,res) => {
+  const {id} = req.body
+ 
+try {
+  const result = await Bookings.findOneAndDelete({confirmation: id})
+  res.status(200).json({ result: result });
+} catch (error) {
+  res.status(404).json({ message: error.message });
+}
+}
+
 export const getAllAvailable = async (req, res) => {
   const data = req.body;
   try {
@@ -95,6 +105,10 @@ export const getAllAvailable = async (req, res) => {
     });
 
     // use the retrieve rooms and check if the dates are valid, will need a helper function/file, will need to manage this later
+    const existingBookings = await Bookings.find();
+    /* db.collection_name.find(
+                     { address.postal_code: { $in: [your values] } },
+                   ) */
 
     res.status(200).json(available);
   } catch (error) {

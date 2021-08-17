@@ -81,9 +81,12 @@
         display: none;
         margin: 1.2rem 0;
       }
-      button {
-        display: none;
+      .active {
+        display: flex;
       }
+    }
+    .btn {
+      display: none;
     }
   }
 }

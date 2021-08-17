@@ -10,7 +10,7 @@ const Available = () => {
   // when storing and managind date in the database, make sure to first convert it to US format!!
   const dispatch = useDispatch();
   const history = useHistory();
-  const booking = useSelector((state) => state.bookings);
+  const details = useSelector((state) => state.details.booking);
   const bookingsAPI = useSelector((state) => state.bookingsAPI);
  // const details = useSelector((state) => state.details);
 
@@ -22,7 +22,7 @@ const Available = () => {
     // we want to save our room to localStorage at this point
     history.push("/booking/checkout");
   };
-  const totalNights = booking.dates[1].getDate() - booking.dates[0].getDate();
+  const totalNights = details.dates[1].getDate() - details.dates[0].getDate();
   return (
     <div className="Available">
       {bookingsAPI.booking.map((room) => (

@@ -1,78 +1,72 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import {deleteBooking} from '../../actions/booking'
+import '../../styles/Existing.scss'
 // make the header image dynamic so that it changes based on the booking
 const Existing = () => {
-  const { result } = useSelector((state) => state.existing.booking);
-  console.log(result);
-  const helper = (room) => {};
+  const dispatch = useDispatch();
+  let data = useSelector((state) => state.existing);
+  // update the page if a booking gets delete
+  const handleDelete = (id) => {
+    // handle booking deletion...
+    console.log(`you want to delete booking: ${id}`)
+    dispatch(deleteBooking({id})); 
+    // rerender the page once deleted to update the booking list
+  }
 
   return (
     <div className="Existing">
       <header
         className="header-main"
         style={{
-          background: `no-repeat center/cover url("/img/about/about_header.jpg")`,
+          background: `no-repeat center/cover url("/img/booking/existing_header.jpg")`,
         }}
       >
         <div className="header-content">
           <h2 className="alt-font">Manage Your Reservations</h2>
         </div>
       </header>
-      {result && result.length > 0 ? (
-        result.map((data) => (
-          <div className="room-card" key={data.confirmation}>
-            <div className="card-img">
-              <img
-                src={`img/rooms/${data.room.split(" ")[0]}.jpg`}
-                alt={room.mainImage}
-              />
-            </div>
-            <div className="card-info">
-              <h2 className="alt-font">{room.title}</h2>
-              <span className="location">
-                <i className="fas fa-map-marker-alt"></i> Suay Resort, Phuket
-              </span>
-              <div className="details">
-                <div>
-                  <label>Size:</label>
-                  <p>{room.size}</p>
-                </div>
-                <div>
-                  <label>Occupancy:</label>
-                  <p>{`${room.adults} Adults & ${room.children} Children`}</p>
-                </div>
-                <div>
-                  <label>Bedding:</label>
-                  <p>{room.bedding}</p>
-                </div>
-              </div>
-              <div className="amenities">
-                <label>Amenities:</label>
-                <ul>
-                  {room.amenities.map((item) => (
-                    <li key={item}>
-                      <i className={`${displayIcon(item)}`}></i>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <div className="card-price">
+      {data && data.booking.length > 0 ? (
+        data.booking.result.map((info) => (
+          <div className='card' key={info.confiramtion}>
+            <div className='info'>
+              <h1>Confirmation Number:</h1>
+              <h1>{info.confirmation}</h1>
               <div>
-                <label>Daily Price</label>
-                <h4>{`$${room.price}`}</h4>
+                <h3>Room:</h3>
+                <h3>{info.room}</h3>
               </div>
               <div>
-                <label>Total ({totalNights} Nights)</label>
-                <h4>{`$${room.price * totalNights}`}</h4>
+                <h3>Name:</h3>
+                <h3>{info.firstName} {info.lastName}</h3>
               </div>
-              <button
-                className="btn contrast"
-                onClick={() => handleSubmit(room)}
-              >
-                Book
-              </button>
+              <div>
+                <h3>Email:</h3>
+                <h3>{info.email}</h3>
+              </div>
+              <div>
+                <h3>Phone:</h3>
+                <h3>{info.phone}</h3>
+              </div>
+              <div>
+                <h3>Guests:</h3>
+                <h3>{info.adults} Adults {info.children > 0 && `& ${info.children} Children`}</h3>
+              </div>
+              <div>
+                <h3>Dates</h3>
+                <h3>{info.startDate.toLocaleString('en-us')} - {info.endDate.toLocaleString('en-us')}</h3>
+              </div>
+              <div>
+                <h3>Payment Type:</h3>
+                <h3>{info.cardType}</h3>
+              </div>
+              <div>
+                <h3>Card Number:</h3>
+                <h3>XXXXXXXXXXXX{info.cardNum.slice(12,16)}</h3>
+              </div>
+            </div>
+            <div className='actions'>
+              <button className='delete-btn' onClick={() => handleDelete(info.confirmation)}>DELETE</button>
             </div>
           </div>
         ))

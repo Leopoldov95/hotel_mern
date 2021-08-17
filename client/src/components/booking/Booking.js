@@ -21,6 +21,9 @@ const Booking = (props) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (formData.confirmation === '' && formData.email === '') {
+      return setError('Please fill out ONE of these fields.')
+    }
     if (formData.confirmation.length > 0 && formData.email.length > 0) {
       return setError('Only Fill out ONE of these fields.')
     }

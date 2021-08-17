@@ -62,7 +62,6 @@ const Checkout = () => {
   });
   const { room } = useSelector((state) => state.details);
   const guestDetails = useSelector((state) => state.details);
-  const booking = useSelector((state) => state.bookings);
   //if (room.length < 1) history.push("/");
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -101,9 +100,19 @@ const Checkout = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const totalNights = booking.dates[1].getDate() - booking.dates[0].getDate();
+  const totalNights = guestDetails.booking.dates[1].getDate() - guestDetails.booking.dates[0].getDate();
   return (
     <div className="Checkout">
+      <header
+        className="header-main"
+        style={{
+          background: `no-repeat center/cover url("/img/booking/checkout_header.jpg")`,
+        }}
+      >
+        <div className="header-content">
+          <h2 className="alt-font">Finish Your Reservation</h2>
+        </div>
+      </header>
       <section className="desc">
         <h1 className="alt-font">YOUR DETAILS</h1>
       </section>
@@ -116,11 +125,11 @@ const Checkout = () => {
             </div>
             <div>
               <h4>Dates:</h4>{" "}
-              <span>{`${booking.dates[0].toLocaleString("en-US", {
+              <span>{`${guestDetails.booking.dates[0].toLocaleString("en-US", {
                 year: "numeric",
                 month: "2-digit",
                 day: "2-digit",
-              })} - ${booking.dates[1].toLocaleString("en-US", {
+              })} - ${guestDetails.booking.dates[1].toLocaleString("en-US", {
                 year: "numeric",
                 month: "2-digit",
                 day: "2-digit",
@@ -133,8 +142,8 @@ const Checkout = () => {
             <div>
               <h4>Guests</h4>
               <span>
-                {booking.adults} Adults{" "}
-                {booking.children > 0 && `${booking.children} Children`}
+                {guestDetails.booking.adults} Adults{" "}
+                {guestDetails.booking.children > 0 && `${guestDetails.booking.children} Children`}
               </span>
             </div>
             <div>

@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
+import { addDays, addWeeks } from "date-fns";
 import TextField from "@material-ui/core/TextField";
 import DateRangePicker from "@material-ui/lab/DateRangePicker";
 import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
 import LocalizationProvider from "@material-ui/lab/LocalizationProvider";
 import Box from "@material-ui/core/Box";
 import {
-  updateAdult,
-  updateChildren,
-  updateDate,
   getAllAvailable,
   postBookingDetails,
 } from "../../actions/booking";
@@ -22,39 +20,59 @@ const BookWidget = () => {
   const history = useHistory();
   const location = useLocation();
   const [showInfo, setShowInfo] = useState(false);
-  /*  const [value, setValue] = useState([null, null]); */
-  const booking = useSelector((state) => state.bookings);
-  const bookingsAPI = useSelector((state) => state.bookingsAPI);
-
+  const [formData, setFormData] = useState({
+    dates: [new Date(), addDays(new Date(), 7)],
+    adults: 1,
+    children: 0,
+  })
   const toggleMobileDisplay = () => {
-    if (window.innerWidth < 920) {
       setShowInfo(!showInfo);
-    }
   };
+
+  function getWeeksAfter(date, amount) {
+    return date ? addWeeks(date, amount) : undefined;
+  }
+
+  const updateAdultQuantity = (val) => {
+    if (formData.adults === 1 && val === -1) return;
+    if (formData.adults === 5 && val === 1) return;
+    setFormData({...formData, adults: formData.adults + val})
+  }
+  const updateChildrenQuantity = (val) => {
+    if (formData.children === 0 && val === -1) return;
+    if (formData.children === 5 && val === 1) return;
+    setFormData({...formData, children: formData.children + val})
+  }
+ 
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { adults, children, dates } = booking;
+    const { adults, children, dates } = formData;
     if (location.pathname !== "/booking") {
       history.push("/booking");
     }
-    // make sure start date CANNOT be earlier than current date
-    dispatch(getAllAvailable({ adults, children, dates }));
+   dispatch(getAllAvailable({ adults, children, dates }));
     // have to include this information, or retrieve it from the state, to the create booking request
     dispatch(postBookingDetails({ adults, children, dates }));
   };
-  /* onChange={(item) => dispatch(updateDate([item.selection]))} */
   return (
     <div className="BookWidget">
       <form onSubmit={handleSubmit}>
         <div className="date" onClick={toggleMobileDisplay}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DateRangePicker
+              disablePast
+              maxDate={getWeeksAfter(formData.dates[0], 4)}
               startText="Check-in"
               endText="Check-out"
-              value={booking.dates}
+              value={formData.dates}
               onChange={(newValue) => {
                 if (!newValue.includes(null)) {
-                  dispatch(updateDate(newValue));
+                  /* dispatch(updateDate(newValue)); */
+                  setFormData({
+                    ...formData,
+                    dates: newValue,
+                  })
                 }
                 /*  setValue(newValue); */
               }}
@@ -75,27 +93,24 @@ const BookWidget = () => {
           ></i>
         </div>
         <div
-          className="guests"
-          style={{
-            display: `${
-              showInfo || window.innerWidth >= 960 ? "flex" : "none"
-            }`,
-          }}
+          className={`guests ${showInfo ? 'active' : ''}`}
         >
           <div className="adults">
             <label>Adults</label>
             <div className="guest-select">
               <div
                 className="btn-sm contrast"
-                onClick={() => dispatch(updateAdult(1))}
+                name="adults"
+                onClick={() => updateAdultQuantity( 1)}
               >
                 <i className="fas fa-plus"></i>
               </div>
-              <span>{booking.adults}</span>
+              <span>{formData.adults}</span>
               <div
                 className="btn-sm contrast"
+                name="adults"
                 onClick={() => {
-                  dispatch(updateAdult(-1));
+                  updateAdultQuantity(-1);
                 }}
               >
                 <i className="fas fa-minus"></i>
@@ -107,17 +122,19 @@ const BookWidget = () => {
             <div className="guest-select">
               <div
                 className="btn-sm contrast"
+                name="children"
                 onClick={() => {
-                  dispatch(updateChildren(1));
+                  updateChildrenQuantity(1);
                 }}
               >
                 <i className="fas fa-plus"></i>
               </div>
-              <span>{booking.children}</span>
+              <span>{formData.children}</span>
               <div
                 className="btn-sm contrast"
+                name="children"
                 onClick={() => {
-                  dispatch(updateChildren(-1));
+                  updateChildrenQuantity(-1);
                 }}
               >
                 <i className="fas fa-minus"></i>
@@ -126,14 +143,7 @@ const BookWidget = () => {
           </div>
         </div>
 
-        <button
-          className="btn"
-          style={{
-            display: `${
-              showInfo || window.innerWidth >= 960 ? "block" : "none"
-            }`,
-          }}
-        >
+        <button className={`btn ${showInfo ? 'active' : ''}`}>
           Check Availability
         </button>
       </form>

@@ -1,4 +1,0 @@
-make sure to modify the state management for the booking forms
-xl - 1100px - 1200px
-tablet/mobile - 768px
-mobile - 480px

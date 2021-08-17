@@ -1,6 +1,7 @@
 // Database Actions
 export const CREATE = "CREATE"; // create a booking
 export const FETCH = "FETCH"; // get a single booking
+export const DELETE = "DELETE"; // deletes a single booking 
 export const FETCH_ALL = "FETCH_ALL"; // get all bookings, admin only
 export const AUTH = "AUTH"; // handle admin auth
 export const LOGOUT = "LOGOUT"; // logs admin out
@@ -14,8 +15,5 @@ export const INFO_DET = 'INFO_DET';
 export const BOOK_DET = 'BOOK_DET';
 
 // Local state management
-export const ADULT = "ADULT";
-export const CHILDREN = "CHILDREN";
-export const CHANGE_DATE = "CHANGE_DATE";
 export const PRICE = "PRICE";
 export const TOTAL = "TOTAL";
