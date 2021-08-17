@@ -12,4 +12,8 @@ Redo Redux
 - handle date collision
 - admin page(s)
 - ensure booking stores room info
+- handle expired bookings
+- make sure to include rooms in bookig info
+- use css only to handle booking widget
+- make sure start date CANNOT be earlier than current date
     

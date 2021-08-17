@@ -6,7 +6,7 @@ import {
   CHILDREN,
   CHANGE_DATE,
   ROOM_DET,
-  BOOK_DET
+  BOOK_DET,
 } from "../constants/actionTypes";
 import * as api from "../api";
 
@@ -62,7 +62,12 @@ export const postBookingDetails = (data) => {
 
 export const postBooking = (details) => async (dispatch) => {
   try {
-    const newBooking = {...details.formData, ...details.guestDetails.booking, ...details.guestDetails.room}
+    const newBooking = {
+      ...details.formData,
+      ...details.guestDetails.booking,
+      ...details.guestDetails.room,
+    };
+    console.log(newBooking);
     const { data } = await api.createBooking(newBooking);
     dispatch({ type: CREATE, payload: data });
   } catch (error) {
@@ -72,9 +77,9 @@ export const postBooking = (details) => async (dispatch) => {
 
 export const getSingleBooking = (id) => async (dispatch) => {
   try {
-    const {data} = await api.fetchExistingBooking(id);
-    dispatch({type: FETCH, payload: data});
+    const { data } = await api.fetchExistingBooking(id);
+    dispatch({ type: FETCH, payload: data });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};

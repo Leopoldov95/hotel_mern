@@ -9,11 +9,11 @@
 
     &:hover {
       cursor: pointer;
-    background-color: black;
-    color: white;
-    transition: all ease 300ms;
+      background-color: black;
+      color: white;
+      transition: all ease 300ms;
     }
-  } 
+  }
 
   &:hover {
     cursor: pointer;
@@ -22,8 +22,6 @@
     transition: all ease 300ms;
   }
 }
-
-
 
 .btn-alt {
   /*  border: solid 5px #fc5185; */
@@ -81,7 +79,6 @@
     left: 0;
     background-color: rgba(0, 0, 0, 0.3);
   }
-
 }
 
 .desc {
@@ -99,7 +96,7 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   width: 100%;
-    max-width: 1100px;
+  max-width: 1100px;
   position: relative;
   margin: 6rem auto 0 auto;
   .bg-light {
@@ -194,7 +191,7 @@
     font-weight: lighter;
     position: absolute;
     top: 0;
-    left: -3%
+    left: -3%;
   }
   .descLeft {
     width: 70%;
@@ -209,6 +206,73 @@
     top: -25px;
     right: 0;
     position: absolute;
+  }
+}
+
+.room-card {
+  display: flex;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  box-shadow: 0px 5px 15px 1px rgba(0, 0, 0, 0.1);
+  .card-img {
+    flex-basis: 30%;
+  }
+  .card-info {
+    flex-basis: 50%;
+    flex-direction: column;
+    padding: 0 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    .location {
+      color: #88807e;
+      font-size: 14px;
+    }
+    .details {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 10px;
+      div {
+        flex-basis: 50%;
+        line-height: 1.4;
+        label {
+          font-weight: bold;
+        }
+      }
+    }
+    .amenities {
+      margin-top: 2px;
+      label {
+        font-weight: bold;
+      }
+      ul {
+        display: flex;
+        li {
+          margin-right: 6px;
+          i {
+            border: 1px solid #e6e6e6;
+            color: #88807e;
+            padding: 4px;
+          }
+        }
+      }
+    }
+  }
+  .card-price {
+    flex-basis: 20%;
+    text-align: end;
+    div {
+      label {
+        color: #88807e;
+        font-weight: bold;
+      }
+      h4 {
+        font-size: 2rem;
+      }
+    }
+    button {
+      margin-top: 1rem;
+      width: 120px;
+    }
   }
 }
 
@@ -233,27 +297,27 @@
 
 @media only screen and (max-width: 980px) {
   .desc_photo {
-    .descLeft{
+    .descLeft {
       padding: 7rem 11rem 3rem 7rem;
     }
   }
 }
 /* Tablet */
 @media only screen and (max-width: 768px) {
-  .desc{
+  .desc {
     padding: 0 1rem;
   }
-  .desc_main{
+  .desc_main {
     display: flex;
     flex-direction: column-reverse;
     .bg-light {
       top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
+      left: 0;
+      height: 100%;
+      width: 100%;
     }
   }
-  .desc_sec{
+  .desc_sec {
     flex-direction: column;
     article {
       padding-left: 0;
@@ -262,15 +326,15 @@
       }
     }
   }
-  .desc_gallery{
+  .desc_gallery {
     flex-direction: column;
-    .descLeft{
+    .descLeft {
       text-align: center;
-      .img-container{
+      .img-container {
         padding: 1rem;
       }
     }
-    .descRight{
+    .descRight {
       padding: 1rem;
     }
   }
@@ -279,20 +343,59 @@
     flex-direction: column-reverse;
     padding: 1rem;
     margin: 0;
-    .descLeft{
+    .descLeft {
       width: 100%;
       padding: 1rem;
-        h1 {
-          position: relative;
-          left: 0;
-          top: 0;
-        }
+      h1 {
+        position: relative;
+        left: 0;
+        top: 0;
+      }
     }
-    .descRight{
+    .descRight {
       position: relative;
       width: 100%;
       top: 0;
       right: 0;
+    }
+  }
+  .room-card {
+    width: 100%;
+    flex-wrap: wrap;
+    .card-img {
+      flex-basis: 100%;
+      width: 100%;
+    }
+    .card-info {
+      flex-basis: 40%;
+      width: 40%;
+    }
+    .card-price {
+      width: 60%;
+      flex-basis: 60%;
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .room-card {
+    .card-info {
+      flex-basis: 100%;
+      width: 100%;
+      .amenities {
+        ul {
+          flex-wrap: wrap;
+          line-height: 2;
+        }
+      }
+    }
+    .card-price {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 1rem;
+      width: 100%;
+      flex-basis: 100%;
     }
   }
 }

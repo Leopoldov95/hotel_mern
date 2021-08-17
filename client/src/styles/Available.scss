@@ -1,121 +1,13 @@
 .Available {
-    display: flex;
-    flex-direction: column;
-    max-width: 1000px;
-    margin: auto;
-    .room-card {
-      display: flex;
-      padding: 1rem;
-      margin: 1.5rem 0;
-      box-shadow: 0px 5px 15px 1px rgba(0, 0, 0, 0.1);
-      .card-img {
-        flex-basis: 30%;
-      }
-      .card-info {
-        flex-basis: 50%;
-        flex-direction: column;
-        padding: 0 1rem;
-        display: flex;
-        flex-wrap: wrap;
-        .location {
-          color: #88807e;
-          font-size: 14px;
-        }
-        .details {
-          display: flex;
-          flex-wrap: wrap;
-          margin-top: 10px;
-          div {
-            flex-basis: 50%;
-            line-height: 1.4;
-            label {
-              font-weight: bold;
-            }
-          }
-        }
-        .amenities {
-          margin-top: 2px;
-          label {
-            font-weight: bold;
-          }
-          ul {
-            display: flex;
-            li {
-              margin-right: 6px;
-              i {
-                border: 1px solid #e6e6e6;
-                color: #88807e;
-                padding: 4px;
-              }
-            }
-          }
-        }
-      }
-      .card-price {
-        flex-basis: 20%;
-        text-align: end;
-        div {
-          label {
-            color: #88807e;
-            font-weight: bold;
-          }
-          h4 {
-            font-size: 2rem;
-          }
-        }
-        button {
-          margin-top: 1rem;
-          width: 120px;
-        }
-      }
-    }
-  }
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+  margin: auto;
+}
 
 /* Tablet/Mobile */
 @media only screen and (max-width: 768px) {
-    .Available {
-        padding: 0 10px;
-        .room-card{
-          width: 100%;
-          flex-wrap: wrap;
-          .card-img{
-            flex-basis: 100%;
-            width: 100%;
-          }
-          .card-info{
-            flex-basis: 40%;
-            width: 40%;
-          }
-          .card-price{
-            width: 60%;
-            flex-basis:60%;
-          }
-        }
-    }
-    
+  .Available {
+    padding: 0 10px;
   }
-  
-  @media only screen and (max-width: 580px) {
-    .Available {
-        .room-card{
-          .card-info{
-          flex-basis: 100%;
-          width: 100%;
-          .amenities {
-            ul {
-              flex-wrap: wrap;
-              line-height: 2;
-            }
-          }
-        }
-        .card-price{
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-between;
-          margin-top: 1rem;
-          width: 100%;
-          flex-basis:100%;
-        }    
-      }
-    }
-  }
+}

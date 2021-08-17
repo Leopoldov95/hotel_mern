@@ -11,7 +11,7 @@ import {
   updateChildren,
   updateDate,
   getAllAvailable,
-  postBookingDetails
+  postBookingDetails,
 } from "../../actions/booking";
 import "../../styles/BookWidget.scss";
 
@@ -37,9 +37,10 @@ const BookWidget = () => {
     if (location.pathname !== "/booking") {
       history.push("/booking");
     }
+    // make sure start date CANNOT be earlier than current date
     dispatch(getAllAvailable({ adults, children, dates }));
     // have to include this information, or retrieve it from the state, to the create booking request
-    dispatch(postBookingDetails({adults, children, dates}))
+    dispatch(postBookingDetails({ adults, children, dates }));
   };
   /* onChange={(item) => dispatch(updateDate([item.selection]))} */
   return (
