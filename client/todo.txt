@@ -15,4 +15,6 @@ Redo Redux
 - handle expired bookings
 - make sure to include rooms in bookig info
 - use css only to handle booking widget
+- handle all above issues
+
     
