@@ -82,16 +82,16 @@ export const postBooking = async (req, res) => {
   }
 };
 
-export const deleteBooking = async (req,res) => {
-  const {id} = req.body
- 
-try {
-  const result = await Bookings.findOneAndDelete({confirmation: id})
-  res.status(200).json({ result: result });
-} catch (error) {
-  res.status(404).json({ message: error.message });
-}
-}
+export const deleteBooking = async (req, res) => {
+  const { id } = req.body;
+
+  try {
+    const result = await Bookings.findOneAndDelete({ confirmation: id });
+    res.status(200).json({ result: result });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
 
 export const getAllAvailable = async (req, res) => {
   const data = req.body;
@@ -105,7 +105,21 @@ export const getAllAvailable = async (req, res) => {
     });
 
     // use the retrieve rooms and check if the dates are valid, will need a helper function/file, will need to manage this later
-    const existingBookings = await Bookings.find();
+    // perhaps will want to retireve bookings that match room parameters
+    const existingBookings = await Bookings.find({
+      room: { $in: [available.title] },
+    });
+
+    /* .toLocaleString("en-US", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+              }) */
+    // once we have retieve the bookings that match our search parameters, we can check if their s date collisions
+    // .getTime() returns the UTC value in milliseconds, may want to use this to check for date collisions
+
+    // another method may be to split the time between month, date, and year and then compare all individual values.
+
     /* db.collection_name.find(
                      { address.postal_code: { $in: [your values] } },
                    ) */
