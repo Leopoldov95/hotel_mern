@@ -95,6 +95,7 @@ export const deleteBooking = async (req, res) => {
 
 export const getAllAvailable = async (req, res) => {
   const data = req.body;
+  // may want to delete bookings here that are outdated
   try {
     // fetch all rooms, even if they're booked (match by adults and children)
     const available = await Rooms.find({
@@ -104,12 +105,54 @@ export const getAllAvailable = async (req, res) => {
       ],
     });
 
+    let roomTitles = [];
+    for (let room of available) {
+      roomTitles.push(room.title);
+    }
     // use the retrieve rooms and check if the dates are valid, will need a helper function/file, will need to manage this later
     // perhaps will want to retireve bookings that match room parameters
     const existingBookings = await Bookings.find({
-      room: { $in: [available.title] },
+      room: { $in: [...roomTitles] },
     });
 
+    const startDate = new Date(data.dates[0]);
+    const endDate = new Date(data.dates[1]);
+
+    let errorRooms = [];
+    for (let booking of existingBookings) {
+      let existingStartDate = new Date(booking.startDate);
+      let existingEndDate = new Date(booking.endDate);
+      // check for date collision
+      // check for start date cllision
+      if (
+        existingStartDate.getMonth() === startDate.getMonth() &&
+        existingStartDate.getFullYear() === startDate.getFullYear()
+      ) {
+        if (
+          startDate.getDate() >= existingStartDate.getDate() &&
+          startDate.getDate() <= existingEndDate.getDate()
+        ) {
+          console.log("error with start date");
+          errorRooms.push(booking.room);
+        }
+      }
+      if (
+        existingEndDate.getMonth() === endDate.getMonth() &&
+        existingEndDate.getFullYear() === endDate.getFullYear()
+      ) {
+        if (
+          endDate.getDate() >= existingStartDate.getDate() &&
+          endDate.getDate() <= existingEndDate.getDate()
+        ) {
+          console.log("error with end date");
+          errorRooms.push(booking.room);
+        }
+      }
+    }
+    console.log(errorRooms);
+    for (let room of available) {
+      console.log(room.title);
+    }
     /* .toLocaleString("en-US", {
                 year: "numeric",
                 month: "2-digit",
