@@ -8,8 +8,6 @@ import {
 } from "../constants/actionTypes";
 import * as api from "../api";
 
-
-
 /* Actions for handling API state */
 
 export const getAllAvailable = (params) => async (dispatch) => {
@@ -45,7 +43,6 @@ export const postBooking = (details) => async (dispatch) => {
       ...details.guestDetails.booking,
       ...details.guestDetails.room,
     };
-    console.log(newBooking);
     const { data } = await api.createBooking(newBooking);
     dispatch({ type: CREATE, payload: data });
   } catch (error) {
@@ -64,9 +61,9 @@ export const getSingleBooking = (id) => async (dispatch) => {
 
 export const deleteBooking = (id) => async (dispatch) => {
   try {
-    const {data} = await api.deleteBooking(id);
-    dispatch({type: DELETE, payload: data})
-  } catch(error) {
-    console.log(error)
+    const { data } = await api.deleteBooking(id);
+    dispatch({ type: DELETE, payload: data });
+  } catch (error) {
+    console.log(error);
   }
-}
+};

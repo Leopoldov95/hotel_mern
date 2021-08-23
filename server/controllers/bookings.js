@@ -133,7 +133,10 @@ export const getAllAvailable = async (req, res) => {
           startDate.getDate() <= existingEndDate.getDate()
         ) {
           console.log("error with start date");
-          errorRooms.push(booking.room);
+          errorRooms.push({
+            room: booking.room,
+            dates: [booking.startDate, booking.endDate],
+          });
         }
       }
       if (
@@ -145,14 +148,23 @@ export const getAllAvailable = async (req, res) => {
           endDate.getDate() <= existingEndDate.getDate()
         ) {
           console.log("error with end date");
-          errorRooms.push(booking.room);
+          errorRooms.push({
+            room: booking.room,
+            dates: [booking.startDate, booking.endDate],
+          });
         }
       }
     }
     console.log(errorRooms);
-    for (let room of available) {
+    let mapped = available.map((element) => ({
+      hasError: true,
+      ...element.toObject(),
+    }));
+    console.log(mapped);
+    /* for (let room of available) {
       console.log(room.title);
-    }
+    } */
+
     /* .toLocaleString("en-US", {
                 year: "numeric",
                 month: "2-digit",

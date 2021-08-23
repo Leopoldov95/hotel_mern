@@ -11,21 +11,22 @@ const Available = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const details = useSelector((state) => state.details.booking);
-  const bookingsAPI = useSelector((state) => state.bookingsAPI);
- // const details = useSelector((state) => state.details);
+  let bookedRooms = [];
+  const availableBookings = useSelector((state) => state.bookingsAPI.booking);
 
+  // const details = useSelector((state) => state.details);
 
   const handleSubmit = (room) => {
     // For the purpsoses of booking info, we only want to have the title and price per night
-    const {title, price} =room;
-    dispatch(postRoomDetails({title, price}));
+    const { title, price } = room;
+    dispatch(postRoomDetails({ title, price }));
     // we want to save our room to localStorage at this point
     history.push("/booking/checkout");
   };
   const totalNights = details.dates[1].getDate() - details.dates[0].getDate();
   return (
     <div className="Available">
-      {bookingsAPI.booking.map((room) => (
+      {availableBookings.map((room) => (
         <div className="room-card" key={room.url}>
           <div className="card-img">
             <img src={`img/rooms/${room.mainImage}`} alt={room.mainImage} />
