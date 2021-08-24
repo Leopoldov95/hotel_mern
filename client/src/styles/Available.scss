@@ -69,7 +69,10 @@
       }
     }
   }
-  
+  .error-msg {
+    color: red;
+    text-align: center;
+  }
 }
 
 /* Tablet/Mobile */
@@ -98,25 +101,24 @@
 @media only screen and (max-width: 500px) {
   .Available {
     .room-card {
-    .card-info {
-      flex-basis: 100%;
-      width: 100%;
-      .amenities {
-        ul {
-          flex-wrap: wrap;
-          line-height: 2;
+      .card-info {
+        flex-basis: 100%;
+        width: 100%;
+        .amenities {
+          ul {
+            flex-wrap: wrap;
+            line-height: 2;
+          }
         }
       }
-    }
-    .card-price {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      margin-top: 1rem;
-      width: 100%;
-      flex-basis: 100%;
+      .card-price {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 1rem;
+        width: 100%;
+        flex-basis: 100%;
+      }
     }
   }
-  }
-  
 }

@@ -1,6 +1,6 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "../../styles/Confirm.scss";
 
 /* This page is to confirm the booking and provide the user with the confirmation details */
@@ -11,7 +11,8 @@ import "../../styles/Confirm.scss";
 const Confirm = () => {
   const history = useHistory();
   const details = useSelector((state) => state.details);
-  console.log(details)
+  const bookingAPI = useSelector((state) => state.bookingAPI);
+  console.log(bookingAPI);
   return (
     <div className="Confirm">
       <header

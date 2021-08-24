@@ -75,6 +75,7 @@ export const postBooking = async (req, res) => {
       cardNum,
       confirmation: newId,
     });
+    console.log(result);
     res.status(200).json({ result: result });
   } catch (error) {
     console.log(error);
@@ -95,15 +96,20 @@ export const deleteBooking = async (req, res) => {
 
 export const getAllAvailable = async (req, res) => {
   const data = req.body;
+
   // may want to delete bookings here that are outdated
   try {
     // fetch all rooms, even if they're booked (match by adults and children)
-    const available = await Rooms.find({
+    const roomData = await Rooms.find({
       $and: [
         { adults: { $gte: data.adults } },
         { children: { $gte: data.children } },
       ],
     });
+    // now that we sent this to object, we can now mutate it
+    let available = roomData.map((element) => ({
+      ...element.toObject(),
+    }));
 
     let roomTitles = [];
     for (let room of available) {
@@ -118,67 +124,48 @@ export const getAllAvailable = async (req, res) => {
     const startDate = new Date(data.dates[0]);
     const endDate = new Date(data.dates[1]);
 
-    let errorRooms = [];
     for (let booking of existingBookings) {
       let existingStartDate = new Date(booking.startDate);
       let existingEndDate = new Date(booking.endDate);
       // check for date collision
       // check for start date cllision
       if (
-        existingStartDate.getMonth() === startDate.getMonth() &&
-        existingStartDate.getFullYear() === startDate.getFullYear()
+        (existingStartDate.getMonth() === startDate.getMonth() &&
+          existingStartDate.getFullYear() === startDate.getFullYear()) ||
+        (existingEndDate.getMonth() === endDate.getMonth() &&
+          existingEndDate.getFullYear() === endDate.getFullYear())
       ) {
         if (
-          startDate.getDate() >= existingStartDate.getDate() &&
-          startDate.getDate() <= existingEndDate.getDate()
+          (startDate.getDate() >= existingStartDate.getDate() &&
+            startDate.getDate() <= existingEndDate.getDate()) ||
+          (endDate.getDate() >= existingStartDate.getDate() &&
+            endDate.getDate() <= existingEndDate.getDate())
         ) {
-          console.log("error with start date");
-          errorRooms.push({
-            room: booking.room,
-            dates: [booking.startDate, booking.endDate],
-          });
-        }
-      }
-      if (
-        existingEndDate.getMonth() === endDate.getMonth() &&
-        existingEndDate.getFullYear() === endDate.getFullYear()
-      ) {
-        if (
-          endDate.getDate() >= existingStartDate.getDate() &&
-          endDate.getDate() <= existingEndDate.getDate()
-        ) {
-          console.log("error with end date");
-          errorRooms.push({
-            room: booking.room,
-            dates: [booking.startDate, booking.endDate],
-          });
+          // handle error logic here
+          // this is breaking the app if 2 or more conflicts exist
+          /*  available = available.map((element) => ({
+            hasError:
+              element.title === booking.room
+                ? {
+                    room: booking.room,
+                    dates: [booking.startDate, booking.endDate],
+                  }
+                : false,
+            ...element,
+          })); */
+          // double loop here
+          for (let room of available) {
+            if (room.title === booking.room) {
+              room.hasError = {
+                room: booking.room,
+                dates: [booking.startDate, booking.endDate],
+              };
+            }
+          }
         }
       }
     }
-    console.log(errorRooms);
-    let mapped = available.map((element) => ({
-      hasError: true,
-      ...element.toObject(),
-    }));
-    console.log(mapped);
-    /* for (let room of available) {
-      console.log(room.title);
-    } */
-
-    /* .toLocaleString("en-US", {
-                year: "numeric",
-                month: "2-digit",
-                day: "2-digit",
-              }) */
-    // once we have retieve the bookings that match our search parameters, we can check if their s date collisions
-    // .getTime() returns the UTC value in milliseconds, may want to use this to check for date collisions
-
-    // another method may be to split the time between month, date, and year and then compare all individual values.
-
-    /* db.collection_name.find(
-                     { address.postal_code: { $in: [your values] } },
-                   ) */
-
+    console.log(available);
     res.status(200).json(available);
   } catch (error) {
     res.status(404).json({ message: error.message });
