@@ -16,9 +16,10 @@ export const getBooking = async (req, res) => {
     } else {
       return res.status(404).json({ message: error.message });
     }
+    console.log(existingBooking);
 
     if (existingBooking) {
-      return res.status(200).json({ result: existingBooking });
+      return res.status(200).json(existingBooking);
     } else {
       return res.status(404).json({ message: error.message });
     }

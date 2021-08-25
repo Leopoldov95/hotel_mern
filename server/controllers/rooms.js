@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import Rooms from "../models/rooms.js";
 
 export const getRooms = async (req, res) => {

@@ -11,14 +11,4 @@ export const fetchAvailableRooms = (data) =>
 export const fetchExistingBooking = (data) => API.post("/bookings", data);
 export const createBooking = (data) => API.post("/bookings/create", data);
 export const deleteBooking = (data) => API.post("/bookings/delete", data);
-/* export const fetchPosts = () => API.get("/posts");
-export const createPost = (newPost) => API.post("/posts", newPost);
-export const updatePost = (id, updatedPost) =>
-  API.patch(`/posts/${id}`, updatedPost);
-export const deletePost = (id) => API.delete(`/posts/${id}`);
-export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
-
-// auth routes
-export const signin = (formData) => API.post("/users/signin", formData);
-export const signup = (formData) => API.post("/users/signup", formData);
- */
+export const signin = (data) => API.post("/auth", data);

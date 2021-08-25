@@ -4,6 +4,7 @@ import cors from "cors"; // for Cross-Origin
 import dotenv from "dotenv";
 import bookingRoutes from "./routes/bookings.js";
 import roomRoutes from "./routes/rooms.js";
+import authRoutes from "./routes/auth.js";
 
 const app = express();
 dotenv.config();
@@ -14,6 +15,7 @@ app.use(cors());
 
 app.use("/rooms", roomRoutes);
 app.use("/bookings", bookingRoutes);
+app.use("/auth", authRoutes);
 app.get("/", (req, res) => {
   res.send("Hello to Suay Resort API");
 });
