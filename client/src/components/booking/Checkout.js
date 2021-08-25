@@ -2,10 +2,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  postGuestDetails,
-  postBooking,
-} from "../../actions/booking";
+import { postGuestDetails, postBooking } from "../../actions/booking";
 import { makeStyles } from "@material-ui/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -41,11 +38,6 @@ const card = [
 ];
 
 const Checkout = () => {
-  /* SYNTAX FOR FORM DATA
-    const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-    */
   const dispatch = useDispatch();
   const history = useHistory();
   const classes = useStyles();
@@ -92,15 +84,19 @@ const Checkout = () => {
     //different appraoch, dont save guest details, just push formdat and other info to api
     // dispatch(postGuestDetails(formData))
     // at this point all guest details will be proided
-    
-    dispatch(postBooking({formData, guestDetails})); 
+
+    dispatch(postBooking({ formData, guestDetails }));
     // create a booking for the guest
     history.push("/booking/confirm");
   };
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const totalNights = guestDetails.booking.dates[1].getDate() - guestDetails.booking.dates[0].getDate();
+  const rawDates =
+    guestDetails.booking.dates[1].getTime() -
+    guestDetails.booking.dates[0].getTime();
+  const totalNights = rawDates / (1000 * 3600 * 24);
+  console.log(totalNights);
   return (
     <div className="Checkout">
       <header
@@ -143,7 +139,8 @@ const Checkout = () => {
               <h4>Guests</h4>
               <span>
                 {guestDetails.booking.adults} Adults{" "}
-                {guestDetails.booking.children > 0 && `${guestDetails.booking.children} Children`}
+                {guestDetails.booking.children > 0 &&
+                  `${guestDetails.booking.children} Children`}
               </span>
             </div>
             <div>

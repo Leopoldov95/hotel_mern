@@ -1,27 +1,44 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
 import Bookings from "./bookings/Bookings";
 import { signin } from "../../actions/auth";
 import "./Auth.scss";
 
 const Auth = () => {
   const dispatch = useDispatch();
+  const authDetails = useSelector((state) => state.auth);
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
-  const [isUser, setIsUser] = useState(false);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile"))); // profile is being access from local storage, shich was set in the reducer file auth.js
+
+  const [error, setError] = useState("");
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (error.length > 0) {
+      setError("");
+    }
+    if (formData.username.length < 1 || formData.password.length < 1) {
+      return setError("Please fill Out All Fields");
+    }
     dispatch(signin(formData));
     setFormData({
       username: "",
       password: "",
     });
+    console.log(authDetails);
   };
+  const logout = () => {
+    dispatch({ type: "LOGOUT" });
+    setUser(null);
+  };
+
   return (
     <div className="Auth">
       <header
@@ -35,9 +52,10 @@ const Auth = () => {
           <h2 className="alt-font">Admin Page</h2>
         </div>
       </header>
-      {!isUser ? (
+      {!user ? (
         <div className="login">
           <h1 className="alt-font">Admin Login</h1>
+          <span style={{ color: "red" }}>{error.length > 0 && error}</span>
           <form onSubmit={handleSubmit}>
             <input
               type="text"
@@ -58,7 +76,14 @@ const Auth = () => {
           </form>
         </div>
       ) : (
-        <Bookings />
+        <>
+          <Bookings />
+          <div className="btn-container">
+            <button className="btn" onClick={logout}>
+              Log Out
+            </button>
+          </div>
+        </>
       )}
     </div>
   );

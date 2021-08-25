@@ -1,10 +1,12 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 import { deleteBooking } from "../../actions/booking";
 import "../../styles/Existing.scss";
 // make the header image dynamic so that it changes based on the booking
 const Existing = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   let data = useSelector((state) => state.existing);
   // update the page if a booking gets delete
   const handleDelete = (id) => {
@@ -28,7 +30,7 @@ const Existing = () => {
       </header>
       {data && data.booking ? (
         data.booking.map((info) => (
-          <div className="card" key={info.confiramtion}>
+          <div className="card" key={info.confirmtion}>
             <div className="info">
               <h1>Confirmation Number:</h1>
               <h1>{info.confirmation}</h1>
@@ -93,7 +95,12 @@ const Existing = () => {
           </div>
         ))
       ) : (
-        <h1>No Booking was found...</h1>
+        <section className="desc">
+          <h1>No Booking was Found...</h1>
+          <button className="btn" onClick={() => history.push("/booking")}>
+            Go Back
+          </button>
+        </section>
       )}
     </div>
   );

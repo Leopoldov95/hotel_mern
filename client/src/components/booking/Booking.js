@@ -26,7 +26,6 @@ const Booking = (props) => {
     if (formData.confirmation.length > 0 && formData.email.length > 0) {
       return setError("Only Fill out ONE of these fields.");
     }
-    // check if user has entered 6 characters else
 
     dispatch(getSingleBooking(formData));
     history.push("/booking/existing");

@@ -7,10 +7,7 @@ import DateRangePicker from "@material-ui/lab/DateRangePicker";
 import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
 import LocalizationProvider from "@material-ui/lab/LocalizationProvider";
 import Box from "@material-ui/core/Box";
-import {
-  getAllAvailable,
-  postBookingDetails,
-} from "../../actions/booking";
+import { getAllAvailable, postBookingDetails } from "../../actions/booking";
 import "../../styles/BookWidget.scss";
 
 /* Have to redo redux, store local form here and ONLY update onSubmission... */
@@ -24,9 +21,9 @@ const BookWidget = () => {
     dates: [new Date(), addDays(new Date(), 7)],
     adults: 1,
     children: 0,
-  })
+  });
   const toggleMobileDisplay = () => {
-      setShowInfo(!showInfo);
+    setShowInfo(!showInfo);
   };
 
   function getWeeksAfter(date, amount) {
@@ -36,29 +33,28 @@ const BookWidget = () => {
   const updateAdultQuantity = (val) => {
     if (formData.adults === 1 && val === -1) return;
     if (formData.adults === 5 && val === 1) return;
-    setFormData({...formData, adults: formData.adults + val})
-  }
+    setFormData({ ...formData, adults: formData.adults + val });
+  };
   const updateChildrenQuantity = (val) => {
     if (formData.children === 0 && val === -1) return;
     if (formData.children === 5 && val === 1) return;
-    setFormData({...formData, children: formData.children + val})
-  }
- 
-  
+    setFormData({ ...formData, children: formData.children + val });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const { adults, children, dates } = formData;
     if (location.pathname !== "/booking") {
       history.push("/booking");
     }
-   dispatch(getAllAvailable({ adults, children, dates }));
+    dispatch(getAllAvailable({ adults, children, dates }));
     // have to include this information, or retrieve it from the state, to the create booking request
     dispatch(postBookingDetails({ adults, children, dates }));
   };
   return (
     <div className="BookWidget">
       <form onSubmit={handleSubmit}>
-        <div className="date" onClick={toggleMobileDisplay}>
+        <div className="date">
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DateRangePicker
               disablePast
@@ -68,13 +64,11 @@ const BookWidget = () => {
               value={formData.dates}
               onChange={(newValue) => {
                 if (!newValue.includes(null)) {
-                  /* dispatch(updateDate(newValue)); */
                   setFormData({
                     ...formData,
                     dates: newValue,
-                  })
+                  });
                 }
-                /*  setValue(newValue); */
               }}
               renderInput={(startProps, endProps) => (
                 <React.Fragment>
@@ -92,16 +86,14 @@ const BookWidget = () => {
             onClick={toggleMobileDisplay}
           ></i>
         </div>
-        <div
-          className={`guests ${showInfo ? 'active' : ''}`}
-        >
+        <div className={`guests ${showInfo ? "active" : ""}`}>
           <div className="adults">
             <label>Adults</label>
             <div className="guest-select">
               <div
                 className="btn-sm contrast"
                 name="adults"
-                onClick={() => updateAdultQuantity( 1)}
+                onClick={() => updateAdultQuantity(1)}
               >
                 <i className="fas fa-plus"></i>
               </div>
@@ -143,7 +135,7 @@ const BookWidget = () => {
           </div>
         </div>
 
-        <button className={`btn ${showInfo ? 'active' : ''}`}>
+        <button className={`btn ${showInfo ? "active" : ""}`}>
           Check Availability
         </button>
       </form>

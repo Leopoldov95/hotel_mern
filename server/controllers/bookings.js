@@ -1,9 +1,19 @@
 import Bookings from "../models/bookings.js";
 import Rooms from "../models/rooms.js";
-import { generateID } from "./helper.js";
+import { generateID, deleteExpiredBookings } from "./helper.js";
+
+export const getAllBookings = async (req, res) => {
+  try {
+    const bookings = await deleteExpiredBookings();
+    return res.status(200).json(bookings);
+  } catch (error) {
+    return res.status(404).json({ message: error.message });
+  }
+};
 
 export const getBooking = async (req, res) => {
   try {
+    deleteExpiredBookings();
     let existingBooking;
     const { confirmation, email } = req.body;
 
@@ -16,7 +26,6 @@ export const getBooking = async (req, res) => {
     } else {
       return res.status(404).json({ message: error.message });
     }
-    console.log(existingBooking);
 
     if (existingBooking) {
       return res.status(200).json(existingBooking);
@@ -46,8 +55,9 @@ export const postBooking = async (req, res) => {
     } = data;
     // create a unique booking ID
     let newId = generateID(6);
-    const totalNights =
-      new Date(dates[1]).getDate() - new Date(dates[0]).getDate();
+    const rawDates =
+      new Date(dates[1]).getTime() - new Date(dates[0]).getTime();
+    const totalNights = rawDates / (1000 * 3600 * 24);
     // check if ID already exists
     // first get all ID's and store them in an array
     const idArr = [];
@@ -76,7 +86,6 @@ export const postBooking = async (req, res) => {
       cardNum,
       confirmation: newId,
     });
-    console.log(result);
     res.status(200).json({ result: result });
   } catch (error) {
     console.log(error);
@@ -126,11 +135,11 @@ export const getAllAvailable = async (req, res) => {
     const endDate = new Date(data.dates[1]);
 
     for (let booking of existingBookings) {
-      let existingStartDate = new Date(booking.startDate);
-      let existingEndDate = new Date(booking.endDate);
+      let existingStartDate = new Date(booking.startDate).getTime();
+      let existingEndDate = new Date(booking.endDate).getTime();
       // check for date collision
       // check for start date cllision
-      if (
+      /* if (
         (existingStartDate.getMonth() === startDate.getMonth() &&
           existingStartDate.getFullYear() === startDate.getFullYear()) ||
         (existingEndDate.getMonth() === endDate.getMonth() &&
@@ -141,10 +150,15 @@ export const getAllAvailable = async (req, res) => {
             startDate.getDate() <= existingEndDate.getDate()) ||
           (endDate.getDate() >= existingStartDate.getDate() &&
             endDate.getDate() <= existingEndDate.getDate())
-        ) {
-          // handle error logic here
-          // this is breaking the app if 2 or more conflicts exist
-          /*  available = available.map((element) => ({
+        ) */ if (
+        (existingStartDate >= startDate.getTime() &&
+          existingStartDate <= endDate.getTime()) ||
+        (existingEndDate >= startDate.getTime() &&
+          existingEndDate <= endDate.getTime())
+      ) {
+        // handle error logic here
+        // this is breaking the app if 2 or more conflicts exist
+        /*  available = available.map((element) => ({
             hasError:
               element.title === booking.room
                 ? {
@@ -154,14 +168,13 @@ export const getAllAvailable = async (req, res) => {
                 : false,
             ...element,
           })); */
-          // double loop here
-          for (let room of available) {
-            if (room.title === booking.room) {
-              room.hasError = {
-                room: booking.room,
-                dates: [booking.startDate, booking.endDate],
-              };
-            }
+        // double loop here
+        for (let room of available) {
+          if (room.title === booking.room) {
+            room.hasError = {
+              room: booking.room,
+              dates: [booking.startDate, booking.endDate],
+            };
           }
         }
       }

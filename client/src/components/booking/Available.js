@@ -20,7 +20,8 @@ const Available = () => {
     // we want to save our room to localStorage at this point
     history.push("/booking/checkout");
   };
-  const totalNights = details.dates[1].getDate() - details.dates[0].getDate();
+  const rawDates = details.dates[1].getTime() - details.dates[0].getTime();
+  const totalNights = rawDates / (1000 * 3600 * 24);
   return (
     <div className="Available">
       {availableBookings.map((room) => (

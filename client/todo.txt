@@ -15,6 +15,6 @@ Redo Redux
 - handle expired bookings
 - make sure to include rooms in bookig info
 - use css only to handle booking widget
-- handle all above issues
-
+- when deleting a single booking, should not set booking state to the deleted booking!
+- fix home images on mobile
     

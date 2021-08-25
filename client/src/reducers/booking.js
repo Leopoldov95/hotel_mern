@@ -14,6 +14,7 @@ export const bookingAPIReducer = (booking = [], action) => {
     case AVAILABLE:
       return { booking: action.payload };
     case CREATE:
+      console.log(booking);
       return { booking: action.payload };
     default:
       return booking;
@@ -27,7 +28,8 @@ export const existingBookingReducer = (booking = [], action) => {
     case FETCH_ALL:
       return { booking: action.payload };
     case DELETE:
-      return { booking: action.payload };
+      console.log(booking);
+      return booking.filter((book) => book.confirmation !== action.payload);
     default:
       return booking;
   }

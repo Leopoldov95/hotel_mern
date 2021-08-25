@@ -1,6 +1,7 @@
 import {
   CREATE,
   FETCH,
+  FETCH_ALL,
   AVAILABLE,
   ROOM_DET,
   BOOK_DET,
@@ -20,6 +21,17 @@ export const getAllAvailable = (params) => async (dispatch) => {
   }
 };
 
+export const getAllBookings = () => async (dispatch) => {
+  console.log("you want to get all bookings");
+  try {
+    console.log("you want to get all bookings");
+    const { data } = await api.fetchAllBookings();
+    console.log(data);
+    dispatch({ type: FETCH_ALL, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
 // Actions for booking details
 
 export const postRoomDetails = (data) => {
@@ -43,6 +55,7 @@ export const postBooking = (details) => async (dispatch) => {
       ...details.guestDetails.booking,
       ...details.guestDetails.room,
     };
+    console.log(newBooking);
 
     const { data } = await api.createBooking(newBooking);
     console.log(data);
@@ -63,8 +76,8 @@ export const getSingleBooking = (id) => async (dispatch) => {
 
 export const deleteBooking = (id) => async (dispatch) => {
   try {
-    const { data } = await api.deleteBooking(id);
-    dispatch({ type: DELETE, payload: data });
+    await api.deleteBooking(id);
+    dispatch({ type: DELETE, payload: id });
   } catch (error) {
     console.log(error);
   }
