@@ -55,7 +55,6 @@ export const postBooking = (details) => async (dispatch) => {
       ...details.guestDetails.booking,
       ...details.guestDetails.room,
     };
-    console.log(newBooking);
 
     const { data } = await api.createBooking(newBooking);
     console.log(data);

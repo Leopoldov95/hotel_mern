@@ -15,7 +15,7 @@ const Existing = () => {
     dispatch(deleteBooking({ id }));
     // rerender the page once deleted to update the booking list
   };
-  console.log(data);
+
   return (
     <div className="Existing">
       <header

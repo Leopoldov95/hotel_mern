@@ -40,6 +40,7 @@ export const getBooking = async (req, res) => {
 export const postBooking = async (req, res) => {
   try {
     const data = req.body; // we now have the data to create a new booking
+    console.log(data);
     const {
       firstName,
       lastName,
@@ -49,15 +50,13 @@ export const postBooking = async (req, res) => {
       children,
       dates,
       title,
-      price,
+      totalPrice,
       paymentType,
       cardNum,
     } = data;
     // create a unique booking ID
     let newId = generateID(6);
-    const rawDates =
-      new Date(dates[1]).getTime() - new Date(dates[0]).getTime();
-    const totalNights = rawDates / (1000 * 3600 * 24);
+
     // check if ID already exists
     // first get all ID's and store them in an array
     const idArr = [];
@@ -81,7 +80,7 @@ export const postBooking = async (req, res) => {
       startDate: dates[0],
       endDate: dates[1],
       room: title,
-      price: price * totalNights,
+      price: totalPrice,
       cardType: paymentType,
       cardNum,
       confirmation: newId,

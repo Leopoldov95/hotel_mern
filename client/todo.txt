@@ -1,20 +1,7 @@
-set local storage to:
-- Avaibality
-- Checout
-
-Redo Redux
-- reducers/state management for:
-    - All rooms
-    - Single room to display
 
 - confirmation page
 - check for existing booking & fix render issue
 - handle date collision - COMPLETE
-- admin page(s)
-- ensure booking stores room info
+- admin page(s) and login render
 - handle expired bookings
-- make sure to include rooms in bookig info
-- use css only to handle booking widget
 - when deleting a single booking, should not set booking state to the deleted booking!
-- fix home images on mobile
-    

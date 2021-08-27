@@ -4,7 +4,8 @@ import BookWidget from "../booking/BookWidget";
 const Tour = () => {
   return (
     <div className="Tour">
-      <header className='header-main'
+      <header
+        className="header-main"
         style={{
           background:
             ' no-repeat center/cover url("/img/tours/tour_header.jpg")',
@@ -29,18 +30,18 @@ const Tour = () => {
       <section className="desc_main">
         <article className="descLeft">
           <div className="bg-light"></div>
-          <h1 className="alt-font">PHUKET IS CALLING</h1>
+          <h1 className="alt-font">ICONIC SCENARY</h1>
           <p>
-            Welcome back to our oceanside resort, in the heart of Phuket's
-            bustling, breathtaking city. Nestled between the dramatic peaks of
-            Table Mountain and the roaring Atlantic Ocean, you’ll spend warm
-            leisurely days by glistening pools or basked in relaxation at our
-            spa, and balmy evenings sampling local flavours at our exquisite
-            restaurants, Nobu, Vista Bar & Lounge and Isola. Let us show you
-            another side to Phuket. Here&Now.
+            This temple is one of the most beautiful that Thailand has to offer,
+            the name Wat Benchamabophit means Marble Temple and came about from
+            the white Carrara marble that was imported from Italy and used to
+            construct the temple. The temple is made up of various small
+            buildings rather than one central wihaan or chedi. You can see many
+            European influences in the temple including the beautiful stained
+            glass windows. The Current king of Thailand Bhumibol Adulyadej spent
+            several days as monk here before his coronation.
           </p>
-          <h2>RESORT OPEN</h2>
-          <button className="btn contrast">Discover More</button>
+          <h2>DAILY VISITS</h2>
         </article>
         <div className="descRight">
           <img src="/img/tours/tour_main.jpg" alt="tour_main" />

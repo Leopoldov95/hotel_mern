@@ -16,12 +16,18 @@ const Available = () => {
   const handleSubmit = (room) => {
     // For the purpsoses of booking info, we only want to have the title and price per night
     const { title, price } = room;
-    dispatch(postRoomDetails({ title, price }));
+    const rawDates = details.dates[1].getTime() - details.dates[0].getTime();
+    /*  const rawDates =*/
+
+    const totalNights = Math.round(rawDates / (1000 * 3600 * 24));
+    const totalPrice = totalNights * price;
+
+    dispatch(postRoomDetails({ title, price, totalNights, totalPrice }));
     // we want to save our room to localStorage at this point
     history.push("/booking/checkout");
   };
   const rawDates = details.dates[1].getTime() - details.dates[0].getTime();
-  const totalNights = rawDates / (1000 * 3600 * 24);
+  const totalNights = Math.round(rawDates / (1000 * 3600 * 24));
   return (
     <div className="Available">
       {availableBookings.map((room) => (

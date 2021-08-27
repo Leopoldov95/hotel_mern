@@ -1,10 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import BookWidget from "../booking/BookWidget";
 import "../../styles/Home.scss";
 const Home = () => {
   return (
     <div className="Home">
-      <header className='header-main'
+      <header
+        className="header-main"
         style={{
           background: ' no-repeat center/cover url("/img/home/home.jpg")',
         }}
@@ -26,7 +28,7 @@ const Home = () => {
           <div className="bg-light"></div>
           <h1 className="alt-font">PHUKET IS CALLING</h1>
           <p>
-            Welcome back to our oceanside resort, in the heart of Phuket's
+            Welcome back to our Oceanside Resort, in the heart of Phuket's
             bustling, breathtaking city. Nestled between the dramatic peaks of
             Table Mountain and the roaring Atlantic Ocean, you’ll spend warm
             leisurely days by glistening pools or basked in relaxation at our
@@ -35,7 +37,9 @@ const Home = () => {
             another side to Phuket. Here&Now.
           </p>
           <h2>RESORT OPEN</h2>
-          <button className="btn contrast">Discover More</button>
+          <Link to="/rooms">
+            <button className="btn contrast">Discover More</button>
+          </Link>
         </article>
         <div className="descRight">
           <img src="/img/home/home_resort.jpg" alt="home_resort" />
@@ -57,7 +61,9 @@ const Home = () => {
                 overpowering spices, while salty sauces are tempered with sugars
                 and offset by acids, such as lemon and lime.
               </p>
-              <button className="btn contrast">Discover More</button>
+              <Link to="/dining">
+                <button className="btn contrast">Discover More</button>
+              </Link>
             </article>
           </div>
           <div className="card">
@@ -76,7 +82,9 @@ const Home = () => {
                 course a King bed with a good mattress, high-quality sheets and
                 a variety of pillow types (or a pillow menu)!
               </p>
-              <button className="btn contrast">Discover More</button>
+              <Link to="/rooms">
+                <button className="btn contrast">Discover More</button>
+              </Link>
             </article>
           </div>
           <div className="card">
@@ -86,13 +94,17 @@ const Home = () => {
             <article>
               <h2 className="alt-font">Amazing Tours</h2>
               <p>
-                The essence of Thai food is all about balance – achieving the
-                perfect harmony between sweet, sour, hot and salty. Pungent
-                fresh herbs, such as lemongrass and galangal, tone down
-                overpowering spices, while salty sauces are tempered with sugars
-                and offset by acids, such as lemon and lime.
+                From lush mountains of the central and northern areas of the
+                country to weirdly shaped limestone formations of southern
+                Thailand, the country owes part of its fame to its wealth of
+                natural wonders. Follow us through these breathtaking natural
+                sights that you shouldn’t miss if you come to Thailand – all of
+                them will make you stare wide-eyed in front of the outstanding
+                beauty of Mother Nature.
               </p>
-              <button className="btn contrast">Discover More</button>
+              <Link to="/tours">
+                <button className="btn contrast">Discover More</button>
+              </Link>
             </article>
           </div>
         </div>

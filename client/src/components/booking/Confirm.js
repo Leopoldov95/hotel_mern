@@ -3,16 +3,13 @@ import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "../../styles/Confirm.scss";
 
-/* This page is to confirm the booking and provide the user with the confirmation details */
-
-// at this point the guest has submitted their booking information
-
-// at the backend, a booking will be created at the database and a id will be genertated for that particular booking
 const Confirm = () => {
   const history = useHistory();
-  const details = useSelector((state) => state.details);
-  const bookingAPI = useSelector((state) => state.bookingAPI);
-  console.log(bookingAPI);
+  const confirmation = useSelector((state) => state.confirmation);
+  /*   if (!confirmation.booking) {
+    history.push("/");
+  } */
+  console.log(confirmation);
   return (
     <div className="Confirm">
       <header
@@ -25,7 +22,24 @@ const Confirm = () => {
           <h2 className="alt-font">Enjoy Your Stay!</h2>
         </div>
       </header>
-      <h1>Welcome to the confirmation page</h1>
+      <section className="desc">
+        {confirmation && confirmation.confirmation ? (
+          <>
+            <h1 className="alt-font">Thank You!</h1>
+            <div className="confirm">
+              <h1>Your confirmation code is:</h1>
+              <h1> {confirmation.confirmation.result.confirmation}</h1>
+              <div className="btn-container">
+                <button className="btn contrast" onClick={() => window.print()}>
+                  <i className="fas fa-print"></i> Print
+                </button>
+              </div>
+            </div>
+          </>
+        ) : (
+          <h1>Something went wrong...</h1>
+        )}
+      </section>
     </div>
   );
 };

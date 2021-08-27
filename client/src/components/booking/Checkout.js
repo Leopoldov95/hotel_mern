@@ -1,5 +1,5 @@
 // may want to savetolocalsrage the guest details
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { postGuestDetails, postBooking } from "../../actions/booking";
@@ -54,6 +54,7 @@ const Checkout = () => {
   });
   const { room } = useSelector((state) => state.details);
   const guestDetails = useSelector((state) => state.details);
+
   //if (room.length < 1) history.push("/");
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -92,11 +93,7 @@ const Checkout = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const rawDates =
-    guestDetails.booking.dates[1].getTime() -
-    guestDetails.booking.dates[0].getTime();
-  const totalNights = rawDates / (1000 * 3600 * 24);
-  console.log(totalNights);
+
   return (
     <div className="Checkout">
       <header
@@ -133,7 +130,7 @@ const Checkout = () => {
             </div>
             <div>
               <h4>Number of Nights:</h4>
-              <span>{totalNights}</span>
+              <span>{room.totalNights}</span>
             </div>
             <div>
               <h4>Guests</h4>
@@ -145,9 +142,7 @@ const Checkout = () => {
             </div>
             <div>
               <h4>Total</h4>
-              <span style={{ fontWeight: "bold" }}>
-                ${room.price * totalNights}
-              </span>
+              <span style={{ fontWeight: "bold" }}>${room.totalPrice}</span>
             </div>
           </>
         )}

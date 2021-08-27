@@ -24,6 +24,10 @@
         border: 1px solid black;
       }
     }
+    .disclaimer {
+      font-size: 14px;
+      color: #000000ab;
+    }
   }
   .desc {
     margin-top: 4rem;
@@ -39,51 +43,49 @@
   .Booking {
     .bookingResults {
       padding: 0 10px;
-      .room-card{
+      .room-card {
         width: 100%;
         flex-wrap: wrap;
-        .card-img{
+        .card-img {
           flex-basis: 100%;
           width: 100%;
         }
-        .card-info{
+        .card-info {
           flex-basis: 40%;
           width: 40%;
         }
-        .card-price{
+        .card-price {
           width: 60%;
-          flex-basis:60%;
+          flex-basis: 60%;
         }
       }
     }
   }
-  
 }
 
 @media only screen and (max-width: 580px) {
   .Booking {
     .bookingResults {
-      .room-card{
-        .card-info{
-        flex-basis: 100%;
-        width: 100%;
-        .amenities {
-          ul {
-            flex-wrap: wrap;
-            line-height: 2;
+      .room-card {
+        .card-info {
+          flex-basis: 100%;
+          width: 100%;
+          .amenities {
+            ul {
+              flex-wrap: wrap;
+              line-height: 2;
+            }
           }
         }
+        .card-price {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          margin-top: 1rem;
+          width: 100%;
+          flex-basis: 100%;
+        }
       }
-      .card-price{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        margin-top: 1rem;
-        width: 100%;
-        flex-basis:100%;
-      }
-      }
-      
     }
   }
 }

@@ -1,0 +1,26 @@
+.Confirm {
+  .desc {
+    min-height: 50vh;
+    .confirm {
+      width: 100%;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background-color: #dbd5cd;
+
+      button {
+        width: 150px;
+        i {
+          padding-right: 8px;
+        }
+      }
+    }
+  }
+  @media print {
+    .header-main {
+      display: none;
+    }
+  }
+}
