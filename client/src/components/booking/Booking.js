@@ -9,6 +9,7 @@ const Booking = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const bookingsAPI = useSelector((state) => state.bookingsAPI);
+  const details = useSelector((state) => state.details);
 
   const [formData, setFormData] = useState({
     confirmation: "",
@@ -75,7 +76,21 @@ const Booking = (props) => {
         <h1 className="alt-font">BOOK A ROOM</h1>
       </section>
       <BookingWidget />
-      {/*    <section className="bookingResults"> */}
+      {details.booking.adults && bookingsAPI.length < 1 && (
+        <div className="loader">
+          <div className="lds-roller">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <h2>Loading...</h2>
+        </div>
+      )}
       {bookingsAPI && bookingsAPI.length > 0 ? (
         <Available />
       ) : (

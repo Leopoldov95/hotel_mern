@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { deleteBooking } from "../../actions/booking";
@@ -7,13 +7,20 @@ import "../../styles/Existing.scss";
 const Existing = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  let data = useSelector((state) => state.existing);
+  let existing = useSelector((state) => state.existing);
+  const [loading, setLoading] = useState(true);
   // update the page if a booking gets delete
   const handleDelete = (id) => {
     // handle booking deletion...
     dispatch(deleteBooking({ id }));
     // rerender the page once deleted to update the booking list
   };
+  useEffect(() => {
+    console.log(" i was triggered");
+    setTimeout(() => {
+      setLoading(false);
+    }, 10000);
+  }, []);
 
   return (
     <div className="Existing">
@@ -27,8 +34,8 @@ const Existing = () => {
           <h2 className="alt-font">Manage Your Reservations</h2>
         </div>
       </header>
-      {data.length > 0 ? (
-        data.map((info) => (
+      {existing.length > 0 ? (
+        existing.map((info) => (
           <div className="card" key={info.confirmation}>
             <div className="info">
               <h1>Confirmation Number:</h1>
@@ -93,6 +100,20 @@ const Existing = () => {
             </div>
           </div>
         ))
+      ) : loading ? (
+        <div className="loader">
+          <div className="lds-roller">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <h2>Loading...</h2>
+        </div>
       ) : (
         <section className="desc">
           <h1>No Booking was Found...</h1>

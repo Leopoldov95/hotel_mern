@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import "./styles/App.scss";
 import { Route, Switch, useLocation } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
@@ -15,15 +15,16 @@ import Available from "./components/booking/Available";
 import Checkout from "./components/booking/Checkout";
 import Confirm from "./components/booking/Confirm";
 import Auth from "./components/auth/Auth";
-import Existing from "./components/booking/Existing"
+import Existing from "./components/booking/Existing";
+import NoPage from "./components/pages/NoPage";
 const App = () => {
-   const location = useLocation();
- /* const history = useHistory(); */
+  const location = useLocation();
+  /* const history = useHistory(); */
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [location])
+  }, [location]);
   return (
-  <>
+    <>
       <Navbar />
       <NavMobile />
       <Switch>
@@ -43,6 +44,7 @@ const App = () => {
         <Route path="/booking/confirm" exact component={Confirm} />
         <Route path="/booking/existing" exact component={Existing} />
         <Route path="/admin" exact component={Auth} />
+        <Route path="*" exact component={NoPage} />
       </Switch>
       <Footer />
     </>

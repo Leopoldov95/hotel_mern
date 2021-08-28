@@ -17,8 +17,6 @@ const Available = () => {
     // For the purpsoses of booking info, we only want to have the title and price per night
     const { title, price } = room;
     const rawDates = details.dates[1].getTime() - details.dates[0].getTime();
-    /*  const rawDates =*/
-
     const totalNights = Math.round(rawDates / (1000 * 3600 * 24));
     const totalPrice = totalNights * price;
 
