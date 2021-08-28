@@ -41,12 +41,15 @@ The app was created with the following technologies
 * ReactJS
 * Redux
 * NodeJS
+* SASS
 
 ## Challenges 
 This is my second fullstack project I have created using the MERN stack.
 This time I decided to add more backend knowlegde to handle creating, reading, and deleting booking information as well as notify the client if a room has been booked on their selected dates and is therefore no available to book.
-I also wanted to use Redux to handle state change. As this was my first time implementing Redux it was quite the learning curve but in the end I was satisified with the resulsts.
+I also wanted to use Redux to handle state change. As this was my first time implementing Redux it was quite the learning curve but in the end I was satisified with the resulsts and learned the value of using middlewares such as thunk.
 
 ## What I Learned
-This has been my largest project created so far. This is actually my second attempt at creating a full stacked ECommerce website, but my first iteration did not utilize a database and therefore the end result had many many issues. This project was the most I have ever delved with the backend side of web programming and it certainly has been a challenge. I learned how to use MongoDB Atlas as a database to store information and how to retrieve that information onto the front-end. I learned better folder structure and how to many if a logged in user vs a guest has certain privileges to access certain features. 
+Using what I learned on my last MERN stack project, I decided to further advance my knowledge on the backend as well as implementing the state management tool called Redux into my website. I quickly found the value of using Redux as a state managemen tool as I no longer had to pass down a ton of props into child components, but rather simply calling it from the Redux store. I do admit that setting up the boiler plate was a bit of a challenge as well as understanding why I needed to use Redux middlewares such as thunk. I am glad though that I decided to utilize Redux from the start as I could see that trying to implement it into an existing project being a challenge.
+I also learned alot more about the backend and using MongoDB as a databse. I decided to store all malleable data in the database as well as data such as booking details that can be created or deleted. One of the biggest challenges was handling date collisions. If a user searches for a room that has already been booked on a specified date, the user won't be able to boom that room. As a result I learned a lot about MongoDB objects and how to manipulate data on the backend in order to show that a room is unavaiable.
+In the end I gained a great deal of knowledge and I'm looking forward to start creating larger and more ambituous projects.
 
