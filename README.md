@@ -15,7 +15,7 @@
 This is a Proof of Concept (POC) fullstack hotel website created using the MERN stack and implementing Redux. This website contains multiple pages that showcase the hotel's amenties and offerings and allows users to browse multiple rooms and book them. All bookings are stored and managed in the backend and user's are only able to book rooms that are currently available based on their selected dates as well as number of guests.
 
 ## Screenshot
-![ScreenShot](https://github.com/Leopoldov95/bicycle_ecomm/blob/main/screenshot.png?raw=true)
+![ScreenShot](https://github.com/Leopoldov95/hotel_mern/blob/main/screenshot.png?raw=true)
 
 ## Usage
 Simply click on the demo link provided.
