@@ -17,23 +17,30 @@ const Auth = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (error.length > 0) {
-      setError("");
+    try {
+      e.preventDefault();
+      if (error.length > 0) {
+        setError("");
+      }
+      if (formData.username.length < 1 || formData.password.length < 1) {
+        return setError("Please fill Out All Fields");
+      }
+      const { data } = await api.signin(formData);
+
+      if (data) {
+        localStorage.setItem("profile", JSON.stringify({ data }));
+        setUser(JSON.parse(localStorage.getItem("profile")));
+      }
+      // dispatch(signin(formData));
+      setFormData({
+        username: "",
+        password: "",
+      });
+    } catch (error) {
+      if (error) {
+        return setError("Invalid Username/Password");
+      }
     }
-    if (formData.username.length < 1 || formData.password.length < 1) {
-      return setError("Please fill Out All Fields");
-    }
-    const { data } = await api.signin(formData);
-    if (data) {
-      localStorage.setItem("profile", JSON.stringify({ data }));
-      setUser(JSON.parse(localStorage.getItem("profile")));
-    }
-    // dispatch(signin(formData));
-    setFormData({
-      username: "",
-      password: "",
-    });
   };
   const logout = () => {
     localStorage.clear();

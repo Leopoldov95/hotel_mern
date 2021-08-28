@@ -22,7 +22,6 @@ export const getAllAvailable = (params) => async (dispatch) => {
 };
 
 export const getAllBookings = () => async (dispatch) => {
-  console.log("you want to get all bookings");
   try {
     const { data } = await api.fetchAllBookings();
     dispatch({ type: FETCH_ALL, payload: data });
