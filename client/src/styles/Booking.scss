@@ -65,6 +65,18 @@
 
 @media only screen and (max-width: 580px) {
   .Booking {
+    .existing {
+      display: flex;
+      flex-direction: column;
+      form {
+        flex-direction: column;
+        margin: 0 1rem;
+        input {
+          width: auto;
+          margin: 0 0 1rem 0;
+        }
+      }
+    }
     .bookingResults {
       .room-card {
         .card-info {

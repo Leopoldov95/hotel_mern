@@ -61,8 +61,8 @@
 }
 
 @media only screen and (max-width: 1200px) {
-  .Room{
-    .roomInfo{
+  .Room {
+    .roomInfo {
       margin: 0;
       padding: 3rem 1rem;
     }
@@ -70,42 +70,42 @@
 }
 
 @media only screen and (max-width: 768px) {
-.Room {
-  .desc_main {
-    margin: 2rem 0 0 0;
-  }
-  .roomInfo{
-    flex-direction: column;
-    .infoLeft{
-      .info {
-        div {
-          padding-right: 1rem;
+  .Room {
+    .desc_main {
+      margin: 2rem 0 0 0;
+    }
+    .roomInfo {
+      flex-direction: column;
+      .infoLeft {
+        .info {
+          div {
+            padding-right: 1rem;
+          }
         }
-      }
-      .infoIcons{
-        ul{
-          li{
-            width: 80px;
+        .infoIcons {
+          ul {
+            li {
+              width: 80px;
+            }
           }
         }
       }
-    }
-    .infoRight{
-      margin-top: 2rem;
+      .infoRight {
+        margin-top: 2rem;
+      }
     }
   }
-}
 }
 
 @media only screen and (max-width: 480px) {
   .Room {
-    .roomInfo{
-      .infoLeft{
-        .infoIcons{
-          ul{
-            li{
+    .roomInfo {
+      .infoLeft {
+        .infoIcons {
+          ul {
+            li {
               width: 70px;
-              .itemIcon{
+              .itemIcon {
                 width: 45px;
                 height: 45px;
               }

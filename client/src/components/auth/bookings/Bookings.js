@@ -7,12 +7,12 @@ const Bookings = () => {
   useEffect(() => {
     dispatch(getAllBookings());
   }, []);
-  const allBookings = useSelector((state) => state.existing);
-  console.log(allBookings);
+  let allBookings = useSelector((state) => state.existing);
+
   const handleDelete = (id) => {
     // handle booking deletion...
-    console.log(`you want to delete booking: ${id}`);
     dispatch(deleteBooking({ id }));
+
     // rerender the page once deleted to update the booking list
   };
 
@@ -22,9 +22,9 @@ const Bookings = () => {
         <h1 className="alt-font">Admin Booking Management</h1>
         <span></span>
       </section>
-      {allBookings.booking &&
-        allBookings.booking.map((info) => (
-          <div className="card" key={info.confiramtion}>
+      {allBookings && allBookings.length > 0 ? (
+        allBookings.map((info) => (
+          <div className="card" key={info.confirmation}>
             <div className="info">
               <h1>Confirmation Number:</h1>
               <h1>{info.confirmation}</h1>
@@ -87,7 +87,12 @@ const Bookings = () => {
               </button>
             </div>
           </div>
-        ))}
+        ))
+      ) : (
+        <section className="desc">
+          <h1>No More Bookings...</h1>
+        </section>
+      )}
     </div>
   );
 };

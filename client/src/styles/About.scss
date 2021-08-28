@@ -2,7 +2,6 @@
   img {
     width: 100%;
   }
- 
 
   .desc {
     h1 {
@@ -71,29 +70,28 @@
 }
 
 @media only screen and (max-width: 1100px) {
-  .About{
-    .testimonials{
+  .About {
+    .testimonials {
       padding: 1rem;
       &-card {
         display: grid;
         grid-template-columns: 2fr 3fr;
         align-items: center;
-        .quote-container{
+        .quote-container {
           padding: 1rem;
           margin-left: 1rem;
           height: 100%;
         }
         .img-container {
-             position: relative;
-             width: 100%;
-             flex-basis: 40%;
-             top: 0;
-             left: 0;
+          position: relative;
+          width: 100%;
+          flex-basis: 40%;
+          top: 0;
+          left: 0;
         }
-        
       }
       .reversed {
-        .quote-container{
+        .quote-container {
           padding: 1rem;
           margin-left: 1rem;
           height: 100%;
@@ -112,20 +110,35 @@
   }
 }
 
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 768px) {
   .About {
+    .desc_photo {
+      .descRight {
+        top: 0;
+      }
+    }
     .testimonials {
       margin: 0;
       &-card {
         grid-template-columns: 1fr;
-        .quote-container{
+        .quote-container {
           margin: 0;
         }
       }
       .reversed {
-        .quote-container{
+        .quote-container {
           margin: 0;
         }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .About {
+    .testimonials {
+      h1 {
+        font-size: 2rem;
       }
     }
   }

@@ -8,6 +8,11 @@
     border: none;
     border-bottom: 1px solid black;
   }
+  .desc {
+    p {
+      line-height: 1.5;
+    }
+  }
 
   .flex-row-lg {
     display: flex;

@@ -15,3 +15,15 @@
     padding-top: 1rem;
   }
 }
+
+/* Mobile */
+@media only screen and (max-width: 480px) {
+  .Footer {
+    h2 {
+      font-size: 1.5rem;
+    }
+    p {
+      font-size: 12px;
+    }
+  }
+}

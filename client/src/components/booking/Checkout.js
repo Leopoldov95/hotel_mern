@@ -1,8 +1,8 @@
 // may want to savetolocalsrage the guest details
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { postGuestDetails, postBooking } from "../../actions/booking";
+import { postBooking } from "../../actions/booking";
 import { makeStyles } from "@material-ui/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -59,7 +59,6 @@ const Checkout = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError(false);
-    console.log("you want to submit a form");
     for (let val in formData) {
       if (formData[val] === "") {
         setMsg("You must Fill Out Every Field");
@@ -81,10 +80,6 @@ const Checkout = () => {
       setMsg("Must be a valid email");
       return setError(true);
     }
-
-    //different appraoch, dont save guest details, just push formdat and other info to api
-    // dispatch(postGuestDetails(formData))
-    // at this point all guest details will be proided
 
     dispatch(postBooking({ formData, guestDetails }));
     // create a booking for the guest

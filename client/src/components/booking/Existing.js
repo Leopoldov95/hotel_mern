@@ -11,7 +11,6 @@ const Existing = () => {
   // update the page if a booking gets delete
   const handleDelete = (id) => {
     // handle booking deletion...
-    console.log(`you want to delete booking: ${id}`);
     dispatch(deleteBooking({ id }));
     // rerender the page once deleted to update the booking list
   };
@@ -28,9 +27,9 @@ const Existing = () => {
           <h2 className="alt-font">Manage Your Reservations</h2>
         </div>
       </header>
-      {data && data.booking ? (
-        data.booking.map((info) => (
-          <div className="card" key={info.confirmtion}>
+      {data.length > 0 ? (
+        data.map((info) => (
+          <div className="card" key={info.confirmation}>
             <div className="info">
               <h1>Confirmation Number:</h1>
               <h1>{info.confirmation}</h1>

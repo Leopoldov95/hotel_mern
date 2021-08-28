@@ -40,7 +40,7 @@ export const getBooking = async (req, res) => {
 export const postBooking = async (req, res) => {
   try {
     const data = req.body; // we now have the data to create a new booking
-    console.log(data);
+
     const {
       firstName,
       lastName,
@@ -85,9 +85,8 @@ export const postBooking = async (req, res) => {
       cardNum,
       confirmation: newId,
     });
-    res.status(200).json({ result: result });
+    res.status(200).json(result);
   } catch (error) {
-    console.log(error);
     res.status(404).json({ message: error.message });
   }
 };
@@ -137,37 +136,12 @@ export const getAllAvailable = async (req, res) => {
       let existingStartDate = new Date(booking.startDate).getTime();
       let existingEndDate = new Date(booking.endDate).getTime();
       // check for date collision
-      // check for start date cllision
-      /* if (
-        (existingStartDate.getMonth() === startDate.getMonth() &&
-          existingStartDate.getFullYear() === startDate.getFullYear()) ||
-        (existingEndDate.getMonth() === endDate.getMonth() &&
-          existingEndDate.getFullYear() === endDate.getFullYear())
-      ) {
-        if (
-          (startDate.getDate() >= existingStartDate.getDate() &&
-            startDate.getDate() <= existingEndDate.getDate()) ||
-          (endDate.getDate() >= existingStartDate.getDate() &&
-            endDate.getDate() <= existingEndDate.getDate())
-        ) */ if (
+      if (
         (existingStartDate >= startDate.getTime() &&
           existingStartDate <= endDate.getTime()) ||
         (existingEndDate >= startDate.getTime() &&
           existingEndDate <= endDate.getTime())
       ) {
-        // handle error logic here
-        // this is breaking the app if 2 or more conflicts exist
-        /*  available = available.map((element) => ({
-            hasError:
-              element.title === booking.room
-                ? {
-                    room: booking.room,
-                    dates: [booking.startDate, booking.endDate],
-                  }
-                : false,
-            ...element,
-          })); */
-        // double loop here
         for (let room of available) {
           if (room.title === booking.room) {
             room.hasError = {
@@ -178,7 +152,7 @@ export const getAllAvailable = async (req, res) => {
         }
       }
     }
-    console.log(available);
+
     res.status(200).json(available);
   } catch (error) {
     res.status(404).json({ message: error.message });

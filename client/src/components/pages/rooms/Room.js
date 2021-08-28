@@ -21,7 +21,8 @@ const Room = (props) => {
   };
   return (
     <div className="Room">
-      <header className='header-main'
+      <header
+        className="header-main"
         style={{
           background: `no-repeat center/cover url("/img/rooms/${room.mainImage}")`,
         }}
@@ -103,8 +104,6 @@ const Room = (props) => {
             restaurants, Nobu, Vista Bar & Lounge and Isola. Let us show you
             another side to Phuket. Here&Now.
           </p>
-          <h2>RESORT OPEN</h2>
-          <button className="btn contrast">Discover More</button>
         </article>
         <div className="descRight">
           <img src={`/img/rooms/${room.subImage}`} alt="sub_room" />

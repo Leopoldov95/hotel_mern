@@ -19,7 +19,7 @@ export const signin = async (req, res) => {
       password,
       existingUser.password
     );
-    console.log(isPasswordCorrect);
+
     if (!isPasswordCorrect)
       return res.status(400).json({ message: "Invalid credentials." });
     // if user does exist by passing the above checks, then the user can proceed to logging in
@@ -30,7 +30,7 @@ export const signin = async (req, res) => {
       "test",
       { expiresIn: "1h" }
     );
-    console.log(existingUser);
+
     res.status(200).json({ result: existingUser, token });
   } catch (error) {
     res.status(500).json({ message: "Something went wrong." });

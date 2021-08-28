@@ -52,7 +52,7 @@ const BookWidget = () => {
     dispatch(postBookingDetails({ adults, children, dates }));
   };
   return (
-    <div className="BookWidget">
+    <div className={`BookWidget ${showInfo ? "active" : ""}`}>
       <form onSubmit={handleSubmit}>
         <div className="date">
           <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -79,14 +79,8 @@ const BookWidget = () => {
               )}
             />
           </LocalizationProvider>
-          <i
-            className={`mobile-toggle fas fa-chevron-${
-              showInfo ? "up" : "down"
-            }`}
-            onClick={toggleMobileDisplay}
-          ></i>
         </div>
-        <div className={`guests ${showInfo ? "active" : ""}`}>
+        <div className="guest">
           <div className="adults">
             <label>Adults</label>
             <div className="guest-select">
@@ -135,9 +129,11 @@ const BookWidget = () => {
           </div>
         </div>
 
-        <button className={`btn ${showInfo ? "active" : ""}`}>
-          Check Availability
-        </button>
+        <button className="btn">Check Availability</button>
+        <i
+          className={`mobile-toggle fas fa-chevron-${showInfo ? "up" : "down"}`}
+          onClick={toggleMobileDisplay}
+        ></i>
       </form>
     </div>
   );

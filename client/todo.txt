@@ -1,7 +1,3 @@
-
-- confirmation page
-- check for existing booking & fix render issue
-- handle date collision - COMPLETE
-- admin page(s) and login render
-- handle expired bookings
-- when deleting a single booking, should not set booking state to the deleted booking!
+- existing booking page
+- admin booking page
+- desc_photo mobile view

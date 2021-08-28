@@ -32,6 +32,7 @@
     width: 100%;
     color: black;
     transition: all ease 300ms;
+    box-shadow: 0px 21px 17px -20px #00000091;
     .contact {
       i {
         padding-right: 12px;
@@ -47,18 +48,18 @@
       }
     }
   }
-  &:hover {
-    color: black;
-    background-color: white;
-    transition: all ease 300ms;
+}
+.menu-active {
+  color: black;
+  background-color: white;
+  transition: all ease 300ms;
 
-    .btn {
-      background-color: black;
-      color: white;
-    }
-    .mobile-top {
-      border-bottom: 1px solid rgba(0, 0, 0, 0.288);
-    }
+  .btn {
+    background-color: black;
+    color: white;
+  }
+  .mobile-top {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.288);
   }
 }
 .alt-color {
@@ -82,6 +83,21 @@
 .show-menu {
   left: 0 !important;
   transition: all ease 300ms;
+}
+@media (hover: hover) and (pointer: fine) {
+  .NavMobile:hover {
+    color: black;
+    background-color: white;
+    transition: all ease 300ms;
+
+    .btn {
+      background-color: black;
+      color: white;
+    }
+    .mobile-top {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.288);
+    }
+  }
 }
 @media only screen and (max-width: 768px) {
   .NavMobile {

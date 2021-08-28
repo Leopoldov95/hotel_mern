@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "../../styles/Available.scss";
@@ -11,7 +11,7 @@ const Available = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const details = useSelector((state) => state.details.booking);
-  const availableBookings = useSelector((state) => state.bookingsAPI.booking);
+  const availableBookings = useSelector((state) => state.bookingsAPI);
 
   const handleSubmit = (room) => {
     // For the purpsoses of booking info, we only want to have the title and price per night

@@ -76,7 +76,7 @@ const Booking = (props) => {
       </section>
       <BookingWidget />
       {/*    <section className="bookingResults"> */}
-      {bookingsAPI.booking && bookingsAPI.booking.length > 0 ? (
+      {bookingsAPI && bookingsAPI.length > 0 ? (
         <Available />
       ) : (
         <div className="filler"></div>

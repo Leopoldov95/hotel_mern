@@ -29,3 +29,14 @@
     }
   }
 }
+
+@media only screen and (max-width: 480px) {
+  .Auth {
+    .login {
+      form {
+        width: auto;
+        margin: 0 1rem;
+      }
+    }
+  }
+}

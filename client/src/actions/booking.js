@@ -24,9 +24,7 @@ export const getAllAvailable = (params) => async (dispatch) => {
 export const getAllBookings = () => async (dispatch) => {
   console.log("you want to get all bookings");
   try {
-    console.log("you want to get all bookings");
     const { data } = await api.fetchAllBookings();
-    console.log(data);
     dispatch({ type: FETCH_ALL, payload: data });
   } catch (error) {
     console.log(error);
@@ -57,7 +55,6 @@ export const postBooking = (details) => async (dispatch) => {
     };
 
     const { data } = await api.createBooking(newBooking);
-    console.log(data);
     dispatch({ type: CREATE, payload: data });
   } catch (error) {
     console.log(error);
@@ -76,7 +73,8 @@ export const getSingleBooking = (id) => async (dispatch) => {
 export const deleteBooking = (id) => async (dispatch) => {
   try {
     await api.deleteBooking(id);
-    dispatch({ type: DELETE, payload: id });
+
+    dispatch({ type: DELETE, payload: id.id });
   } catch (error) {
     console.log(error);
   }

@@ -1,14 +1,10 @@
 import React, { useState } from "react";
-
-import { useDispatch, useSelector } from "react-redux";
+import * as api from "../../api/index";
 import Bookings from "./bookings/Bookings";
-import { signin } from "../../actions/auth";
+
 import "./Auth.scss";
 
 const Auth = () => {
-  const dispatch = useDispatch();
-  const authDetails = useSelector((state) => state.auth);
-
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -16,10 +12,11 @@ const Auth = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile"))); // profile is being access from local storage, shich was set in the reducer file auth.js
 
   const [error, setError] = useState("");
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (error.length > 0) {
       setError("");
@@ -27,15 +24,19 @@ const Auth = () => {
     if (formData.username.length < 1 || formData.password.length < 1) {
       return setError("Please fill Out All Fields");
     }
-    dispatch(signin(formData));
+    const { data } = await api.signin(formData);
+    if (data) {
+      localStorage.setItem("profile", JSON.stringify({ data }));
+      setUser(JSON.parse(localStorage.getItem("profile")));
+    }
+    // dispatch(signin(formData));
     setFormData({
       username: "",
       password: "",
     });
-    console.log(authDetails);
   };
   const logout = () => {
-    dispatch({ type: "LOGOUT" });
+    localStorage.clear();
     setUser(null);
   };
 

@@ -18,44 +18,55 @@ const NavMobile = () => {
     return () => window.removeEventListener("scroll", listenScrollEvent);
   }, []);
   return (
-    <div className={`NavMobile ${header}`}>
+    <div className={`NavMobile ${header} ${showMenu ? "menu-active" : ""}`}>
       <div className="menu-top">
         <div className="hamburger-menu">
-          <i onClick={() => setShowMenu(!showMenu)} className={`fas ${showMenu ? 'fa-times' : 'fa-bars'}`}></i>
+          <i
+            onClick={() => setShowMenu(!showMenu)}
+            className={`fas ${showMenu ? "fa-times" : "fa-bars"}`}
+          ></i>
         </div>
         <div className="brand">
-          <Link to="/">
+          <Link to="/" onClick={() => setShowMenu(false)}>
             <h1 className="alt-font">SUAY RESORTS</h1>
           </Link>
         </div>
         <Link to="/booking">
-          <button className="btn">Book Now</button>
+          <button className="btn">Booking</button>
         </Link>
       </div>
-      <div className={`menu-bottom ${showMenu && 'show-menu'}`}>
+      <div className={`menu-bottom ${showMenu && "show-menu"}`}>
         <ul>
           <li>
-          <div className="contact">
-          <i className="fas fa-phone-alt"></i>
-          <i className="fas fa-envelope"></i>
-          <i className="fab fa-instagram"></i>
-          <i className="fab fa-facebook-square"></i>
-        </div>
+            <div className="contact">
+              <i className="fas fa-phone-alt"></i>
+              <i className="fas fa-envelope"></i>
+              <i className="fab fa-instagram"></i>
+              <i className="fab fa-facebook-square"></i>
+            </div>
           </li>
           <li>
-            <Link to="/rooms">Rooms</Link>
+            <Link onClick={() => setShowMenu(false)} to="/rooms">
+              Rooms
+            </Link>
             <i className="fas fa-chevron-right"></i>
           </li>
           <li>
-            <Link to="/dining">Dining </Link>
+            <Link onClick={() => setShowMenu(false)} to="/dining">
+              Dining{" "}
+            </Link>
             <i className="fas fa-chevron-right"></i>
           </li>
           <li>
-            <Link to="/tours">Tours </Link>
+            <Link onClick={() => setShowMenu(false)} to="/tours">
+              Tours{" "}
+            </Link>
             <i className="fas fa-chevron-right"></i>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <Link onClick={() => setShowMenu(false)} to="/about">
+              About
+            </Link>
             <i className="fas fa-chevron-right"></i>
           </li>
         </ul>

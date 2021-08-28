@@ -12,7 +12,7 @@ import {
 export const bookingAPIReducer = (booking = [], action) => {
   switch (action.type) {
     case AVAILABLE:
-      return { booking: action.payload };
+      return action.payload;
     default:
       return booking;
   }
@@ -21,7 +21,7 @@ export const bookingAPIReducer = (booking = [], action) => {
 export const confirmationReducer = (confirmation = [], action) => {
   switch (action.type) {
     case CREATE:
-      return { confirmation: action.payload };
+      return action.payload;
     default:
       return confirmation;
   }
@@ -30,13 +30,11 @@ export const confirmationReducer = (confirmation = [], action) => {
 export const existingBookingReducer = (booking = [], action) => {
   switch (action.type) {
     case FETCH:
-      return { booking: action.payload };
+      return action.payload;
     case FETCH_ALL:
-      return { booking: action.payload };
+      return action.payload;
     case DELETE:
-      return booking.booking.filter(
-        (book) => book.confirmation !== action.payload
-      );
+      return booking.filter((book) => book.confirmation !== action.payload);
     default:
       return booking;
   }
