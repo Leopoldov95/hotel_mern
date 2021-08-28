@@ -14,6 +14,8 @@
     text-align: center;
     margin-top: 2rem;
     line-height: 2;
+    display: flex;
+    flex-direction: column;
     form {
       display: flex;
       justify-content: center;
@@ -66,8 +68,6 @@
 @media only screen and (max-width: 580px) {
   .Booking {
     .existing {
-      display: flex;
-      flex-direction: column;
       form {
         flex-direction: column;
         margin: 0 1rem;
