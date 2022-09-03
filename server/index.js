@@ -17,7 +17,7 @@ app.use("/rooms", roomRoutes);
 app.use("/bookings", bookingRoutes);
 app.use("/auth", authRoutes);
 app.get("/", (req, res) => {
-  res.send("Hello to Suay Resort API");
+  res.send("Hello to Suay Resort API...");
 });
 const PORT = process.env.PORT || 5000;
 
