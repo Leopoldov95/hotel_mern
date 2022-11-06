@@ -1,21 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getSingleBooking } from "../../actions/booking";
+import { checkConnection, getSingleBooking } from "../../actions/booking";
 import BookingWidget from "./BookWidget";
 import Available from "./Available";
+import Loader from "../helper/Loader";
 import "../../styles/Booking.scss";
+
 const Booking = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const bookingsAPI = useSelector((state) => state.bookingsAPI);
   const details = useSelector((state) => state.details);
+  const serverStatus = useSelector((state) => state.serverStatus);
 
   const [formData, setFormData] = useState({
     confirmation: "",
     email: "",
   });
   const [error, setError] = useState("");
+  useEffect(() => {
+    dispatch(checkConnection());
+  }, []);
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -96,6 +102,7 @@ const Booking = (props) => {
       ) : (
         <div className="filler"></div>
       )}
+      {!serverStatus && <Loader />}
     </div>
   );
 };

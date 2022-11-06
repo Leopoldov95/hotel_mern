@@ -7,6 +7,7 @@ import {
   confirmationReducer,
 } from "./booking";
 import rooms from "./rooms";
+import { serverStatusReducer } from "./server";
 
 export default combineReducers({
   bookingsAPI: bookingAPIReducer,
@@ -14,4 +15,5 @@ export default combineReducers({
   details: bookingDetails,
   existing: existingBookingReducer,
   rooms,
+  serverStatus: serverStatusReducer,
 });

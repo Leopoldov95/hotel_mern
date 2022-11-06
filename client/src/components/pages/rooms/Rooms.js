@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import "../../../styles/Rooms.scss";
 import { getAllRooms } from "../../../actions/rooms";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import BookWidget from "../../booking/BookWidget";
+import Loader from "../../helper/Loader";
 /* import RoomsJSON from "../../../rooms.json"; */
 const Rooms = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,8 @@ const Rooms = () => {
     dispatch(getAllRooms());
   }, [location]);
   const rooms = useSelector((state) => state.rooms.rooms);
+  const serverStatus = useSelector((state) => state.serverStatus);
+
   return (
     <div className="Rooms">
       <header
@@ -73,6 +76,7 @@ const Rooms = () => {
           ))
         )}
       </section>
+      {!serverStatus && <Loader />}
     </div>
   );
 };

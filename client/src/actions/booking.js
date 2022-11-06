@@ -6,6 +6,7 @@ import {
   ROOM_DET,
   BOOK_DET,
   DELETE,
+  AWAKE,
 } from "../constants/actionTypes";
 import * as api from "../api";
 
@@ -16,6 +17,17 @@ export const getAllAvailable = (params) => async (dispatch) => {
     const { data } = await api.fetchAvailableRooms(params);
 
     dispatch({ type: AVAILABLE, payload: data });
+    dispatch({ type: AWAKE, payload: true });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// pings the server and waits for a response
+export const checkConnection = () => async (dispatch) => {
+  try {
+    const { data } = await api.testConnection();
+    dispatch({ type: AWAKE, payload: true });
   } catch (error) {
     console.log(error);
   }
@@ -25,10 +37,12 @@ export const getAllBookings = () => async (dispatch) => {
   try {
     const { data } = await api.fetchAllBookings();
     dispatch({ type: FETCH_ALL, payload: data });
+    dispatch({ type: AWAKE, payload: true });
   } catch (error) {
     console.log(error);
   }
 };
+
 // Actions for booking details
 
 export const postRoomDetails = (data) => {
@@ -64,6 +78,7 @@ export const getSingleBooking = (id) => async (dispatch) => {
   try {
     const { data } = await api.fetchExistingBooking(id);
     dispatch({ type: FETCH, payload: data });
+    dispatch({ type: AWAKE, payload: true });
   } catch (error) {
     console.log(error);
   }

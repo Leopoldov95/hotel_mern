@@ -1,4 +1,4 @@
-import { FETCH_ROOMS, ROOM } from "../constants/actionTypes";
+import { FETCH_ROOMS, ROOM, AWAKE } from "../constants/actionTypes";
 import * as api from "../api";
 
 /* This is to grab all rooms from the db */
@@ -6,6 +6,7 @@ export const getAllRooms = () => async (dispatch) => {
   try {
     const { data } = await api.fetchRooms();
     dispatch({ type: FETCH_ROOMS, payload: data });
+    dispatch({ type: AWAKE, payload: true });
   } catch (error) {
     console.log(error);
   }

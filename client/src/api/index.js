@@ -4,6 +4,7 @@ const API = axios.create({
   baseURL: "https://suay-resort-api.onrender.com/",
 }); // can set a base url here
 
+export const testConnection = () => API.get("/");
 export const fetchRooms = () => API.get("/rooms");
 export const fetchRoom = (url) => API.post(`/rooms/${url}`);
 export const fetchAvailableRooms = (data) =>
