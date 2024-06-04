@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://fragile-hare-drawers.cyclic.app/",
+  baseURL: "https://suay-resort-api.onrender.com/",
 }); // can set a base url here
 
 export const testConnection = () => API.get("/");
